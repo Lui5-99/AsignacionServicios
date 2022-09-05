@@ -11,7 +11,7 @@ namespace CapaDatos
 {
     public class CD_Usuario
     {
-        public List<Usuario> Listar()
+        public List<Usuario> Listar(int tipo)
         {
             List<Usuario> ls = new List<Usuario>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
@@ -23,6 +23,7 @@ namespace CapaDatos
                     query.AppendLine("R.IdRol, R.Descripcion ");
                     query.AppendLine("FROM USUARIO U ");
                     query.AppendLine("INNER JOIN ROL R ON R.IdRol = U.IdRol ");
+                    query.AppendLine(tipo == 1 ? "WHERE R.DESCRIPCION = 'SOPORTE' ": "");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();

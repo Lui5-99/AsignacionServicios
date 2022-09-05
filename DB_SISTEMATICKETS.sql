@@ -252,8 +252,59 @@ begin
 end
 
 GO
+/* ---------- PROCEDIMIENTOS PARA USUARIOS -----------------*/
+/* -----------PROCESOS PARA REGISTRAR UN SERVICIO---------- */
+CREATE TYPE [dbo].[EMovimiento] AS TABLE(
+	[IdUsuario] int NULL
+)
 
 
+GO
+CREATE PROCEDURE sp_RegistrarServicio(
+@IdUsuario int,
+@IdUAsignado int,
+@IdCliente int,
+@IdEstadoServicio int,
+@Factura bit,
+@HojaServicio bit,
+@Descripcion varchar(500),
+@DetalleMovimiento [EMovimiento] ReadOnly,
+@Resultado bit output,
+@Mensaje varchar(500) output
+)
+as
+begin
+	
+	begin try
+
+		declare @IdServicio int = 0
+		set @Resultado = 1
+		set @Mensaje = ''
+
+		begin transaction registro
+
+		insert into SERVICIO(IdUsuario,IdUAsignado,IdCliente,IdEstadoServicio,Factura,HojaServicio,Descripcion)
+		values(@IdUsuario,@IdUAsignado,@IdCliente,@IdEstadoServicio,@Factura,@HojaServicio,@Descripcion)
+
+		set @IdServicio = SCOPE_IDENTITY()
+
+		insert into MOVIMIENTO(IdServicio,IdUsuario)
+		select @IdServicio, IdUsuario from @DetalleMovimiento
+
+		commit transaction registro
+
+
+	end try
+	begin catch
+		set @Resultado = 0
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
+
+end
+
+
+GO
 
 /**/
 insert into ESTADOSERVICIO(descripcion) values('Pendiente')

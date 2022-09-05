@@ -98,6 +98,12 @@
     <Compile Include="frmConfiguracion.Designer.cs">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmModServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModServicios.Designer.cs">
+      <DependentUpon>frmModServicios.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,8 +143,14 @@
     <EmbeddedResource Include="frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmModServicios.resx">
+      <DependentUpon>frmModServicios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

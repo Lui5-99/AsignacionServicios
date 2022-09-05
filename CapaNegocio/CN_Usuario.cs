@@ -11,9 +11,9 @@ namespace CapaNegocio
     public class CN_Usuario
     {
         private CD_Usuario oCD_Usuario = new CD_Usuario();
-        public List<Usuario> Listar()
+        public List<Usuario> Listar(int tipo)
         {
-            return oCD_Usuario.Listar();
+            return oCD_Usuario.Listar(tipo);
         }
         public int Registrar(Usuario oUsuario, out string Mensaje)
         {

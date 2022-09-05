@@ -28,7 +28,7 @@ namespace CapaPresentacion
 
         private void btIngresar_Click(object sender, EventArgs e)
         {
-            Usuario oUsuario = new CN_Usuario().Listar().Where(
+            Usuario oUsuario = new CN_Usuario().Listar(0).Where(
                 u => u.User == txtUser.Text && u.Clave == txtPwd.Text).FirstOrDefault();
             if(oUsuario != null)
             {

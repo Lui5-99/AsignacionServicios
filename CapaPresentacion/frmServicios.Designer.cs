@@ -41,6 +41,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbHojaServicio = new System.Windows.Forms.CheckBox();
+            this.cbFactura = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -61,6 +63,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cbFactura);
+            this.groupBox3.Controls.Add(this.cbHojaServicio);
             this.groupBox3.Controls.Add(this.btAdd);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtDescricpcion);
@@ -90,6 +94,7 @@
             this.btAdd.Text = "Agregar";
             this.btAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btAdd.UseVisualStyleBackColor = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // label4
             // 
@@ -97,12 +102,13 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(175, 20);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Problema";
+            this.label4.Text = "Descripcion";
             // 
             // txtDescricpcion
             // 
+            this.txtDescricpcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricpcion.Location = new System.Drawing.Point(178, 36);
             this.txtDescricpcion.Name = "txtDescricpcion";
             this.txtDescricpcion.Size = new System.Drawing.Size(380, 158);
@@ -111,10 +117,11 @@
             // 
             // cbUsuario
             // 
+            this.cbUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUsuario.FormattingEnabled = true;
             this.cbUsuario.Location = new System.Drawing.Point(9, 36);
             this.cbUsuario.Name = "cbUsuario";
-            this.cbUsuario.Size = new System.Drawing.Size(145, 24);
+            this.cbUsuario.Size = new System.Drawing.Size(145, 21);
             this.cbUsuario.TabIndex = 6;
             // 
             // label3
@@ -158,9 +165,10 @@
             // 
             // txtRazon
             // 
+            this.txtRazon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRazon.Location = new System.Drawing.Point(197, 35);
             this.txtRazon.Name = "txtRazon";
-            this.txtRazon.Size = new System.Drawing.Size(373, 23);
+            this.txtRazon.Size = new System.Drawing.Size(373, 20);
             this.txtRazon.TabIndex = 3;
             // 
             // label2
@@ -175,10 +183,12 @@
             // 
             // txtCodigo
             // 
+            this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(9, 35);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(145, 23);
+            this.txtCodigo.Size = new System.Drawing.Size(145, 20);
             this.txtCodigo.TabIndex = 1;
+            this.txtCodigo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigo_KeyDown);
             // 
             // label1
             // 
@@ -189,6 +199,28 @@
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Codigo";
+            // 
+            // cbHojaServicio
+            // 
+            this.cbHojaServicio.AutoSize = true;
+            this.cbHojaServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbHojaServicio.Location = new System.Drawing.Point(9, 80);
+            this.cbHojaServicio.Name = "cbHojaServicio";
+            this.cbHojaServicio.Size = new System.Drawing.Size(104, 17);
+            this.cbHojaServicio.TabIndex = 9;
+            this.cbHojaServicio.Text = "Hoja de Servicio";
+            this.cbHojaServicio.UseVisualStyleBackColor = true;
+            // 
+            // cbFactura
+            // 
+            this.cbFactura.AutoSize = true;
+            this.cbFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFactura.Location = new System.Drawing.Point(9, 103);
+            this.cbFactura.Name = "cbFactura";
+            this.cbFactura.Size = new System.Drawing.Size(62, 17);
+            this.cbFactura.TabIndex = 10;
+            this.cbFactura.Text = "Factura";
+            this.cbFactura.UseVisualStyleBackColor = true;
             // 
             // frmServicios
             // 
@@ -223,5 +255,7 @@
         private System.Windows.Forms.RichTextBox txtDescricpcion;
         private System.Windows.Forms.ComboBox cbUsuario;
         private FontAwesome.Sharp.IconButton btAdd;
+        private System.Windows.Forms.CheckBox cbFactura;
+        private System.Windows.Forms.CheckBox cbHojaServicio;
     }
 }

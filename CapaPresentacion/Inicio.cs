@@ -19,6 +19,7 @@ namespace AsignacionServicios
         private static Usuario usuarioActual;
         private static IconMenuItem menuActivo = null;
         private static Form formularioActivo = null;
+        private static int IdRolActual = 0;
         public Inicio(Usuario oUsuario)
         {
             InitializeComponent();
@@ -27,6 +28,8 @@ namespace AsignacionServicios
 
         private void Inicio_Load(object sender, EventArgs e)
         {
+            lblUsuario.Text = usuarioActual.Nombre;
+            IdRolActual = usuarioActual.oRol.IdRol;
             List<Permiso> ls = new CN_Permiso().Listar(usuarioActual.IdUsuario);
             foreach(IconMenuItem iconMenu in menu.Items)
             {
@@ -35,20 +38,9 @@ namespace AsignacionServicios
                     );
                 if (!encontrado)
                     iconMenu.Visible = false;
-                if(usuarioActual.oRol.IdRol != 1)
+                if(IdRolActual != 1)
                 {
-                    subMenuAgregar.Visible = true;
-                    SubMenuDetalles.Visible = true;
-                }
-                else if (usuarioActual.oRol.IdRol != 2)
-                {
-                    subMenuAgregar.Visible = true;
-                    SubMenuDetalles.Visible = true;
-                }
-                else
-                {
-                    subMenuAgregar.Visible = false;
-                    SubMenuDetalles.Visible = true;
+                    subMenuAgregar.Text = "Ver";
                 }
             }
         }
@@ -90,7 +82,14 @@ namespace AsignacionServicios
 
         private void subMenuAgregar_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmServicios(usuarioActual));
+            if(IdRolActual == 1)
+            {
+                AbrirFormulario((IconMenuItem)sender, new frmServicios(usuarioActual));
+            }
+            else
+            {
+                AbrirFormulario((IconMenuItem)sender, new frmModServicios(usuarioActual));
+            }
         }
 
         private void menuClientes_Click(object sender, EventArgs e)
