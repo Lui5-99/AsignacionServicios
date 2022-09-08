@@ -66,3 +66,5 @@ C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\Asi
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.Modales.mdCliente.resources
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmUsuarios.resources
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmModServicios.resources
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmMovimiento.resources
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.Modales.mdAcercade.resources

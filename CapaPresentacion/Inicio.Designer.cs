@@ -31,6 +31,8 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuUsuario = new FontAwesome.Sharp.IconMenuItem();
             this.menuServicio = new FontAwesome.Sharp.IconMenuItem();
+            this.subMenuAgregar = new FontAwesome.Sharp.IconMenuItem();
+            this.SubMenuDetalles = new FontAwesome.Sharp.IconMenuItem();
             this.menuClientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuConfiguracion = new FontAwesome.Sharp.IconMenuItem();
             this.menuAcercade = new FontAwesome.Sharp.IconMenuItem();
@@ -39,8 +41,6 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.menuTitulo = new System.Windows.Forms.MenuStrip();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.subMenuAgregar = new FontAwesome.Sharp.IconMenuItem();
-            this.SubMenuDetalles = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +93,26 @@
             this.menuServicio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuServicio.Click += new System.EventHandler(this.menuServicio_Click);
             // 
+            // subMenuAgregar
+            // 
+            this.subMenuAgregar.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.subMenuAgregar.IconColor = System.Drawing.Color.Black;
+            this.subMenuAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.subMenuAgregar.Name = "subMenuAgregar";
+            this.subMenuAgregar.Size = new System.Drawing.Size(115, 22);
+            this.subMenuAgregar.Text = "Nuevo";
+            this.subMenuAgregar.Click += new System.EventHandler(this.subMenuAgregar_Click);
+            // 
+            // SubMenuDetalles
+            // 
+            this.SubMenuDetalles.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.SubMenuDetalles.IconColor = System.Drawing.Color.Black;
+            this.SubMenuDetalles.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.SubMenuDetalles.Name = "SubMenuDetalles";
+            this.SubMenuDetalles.Size = new System.Drawing.Size(115, 22);
+            this.SubMenuDetalles.Text = "Detalles";
+            this.SubMenuDetalles.Click += new System.EventHandler(this.SubMenuDetalles_Click);
+            // 
             // menuClientes
             // 
             this.menuClientes.AutoSize = false;
@@ -136,6 +156,7 @@
             this.menuAcercade.Size = new System.Drawing.Size(122, 69);
             this.menuAcercade.Text = "Acerca de";
             this.menuAcercade.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuAcercade.Click += new System.EventHandler(this.menuAcercade_Click);
             // 
             // lblSistema
             // 
@@ -193,25 +214,6 @@
             this.contenedor.Name = "contenedor";
             this.contenedor.Size = new System.Drawing.Size(1019, 492);
             this.contenedor.TabIndex = 3;
-            // 
-            // subMenuAgregar
-            // 
-            this.subMenuAgregar.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.subMenuAgregar.IconColor = System.Drawing.Color.Black;
-            this.subMenuAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.subMenuAgregar.Name = "subMenuAgregar";
-            this.subMenuAgregar.Size = new System.Drawing.Size(184, 26);
-            this.subMenuAgregar.Text = "Nuevo";
-            this.subMenuAgregar.Click += new System.EventHandler(this.subMenuAgregar_Click);
-            // 
-            // SubMenuDetalles
-            // 
-            this.SubMenuDetalles.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.SubMenuDetalles.IconColor = System.Drawing.Color.Black;
-            this.SubMenuDetalles.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.SubMenuDetalles.Name = "SubMenuDetalles";
-            this.SubMenuDetalles.Size = new System.Drawing.Size(184, 26);
-            this.SubMenuDetalles.Text = "Detalles";
             // 
             // Inicio
             // 

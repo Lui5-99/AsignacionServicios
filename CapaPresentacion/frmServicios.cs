@@ -61,6 +61,8 @@ namespace AsignacionServicios
 
         private void btAdd_Click(object sender, EventArgs e)
         {
+            int IdCorrelativo = new CN_Servicio().obtenerCorrelativo();
+            string CodigoServicio = string.Format("{0:000000}", IdCorrelativo);
             string mensaje = string.Empty;
             Servicio oServ = new Servicio()
             {
@@ -77,6 +79,7 @@ namespace AsignacionServicios
                     Codigo = txtCodigo.Text,
                     RazonSocial = txtRazon.Text
                 },
+                CodigoServicio = CodigoServicio,
                 oEstado = new EstadoServicio()
                 {
                     IdEstadoServicio = 1
@@ -87,10 +90,15 @@ namespace AsignacionServicios
             };
             DataTable dt = new DataTable();
             dt.Columns.Add("IdUsuario", typeof(int));
-            dt.Rows.Add(Convert.ToInt32(((OpcionCombo)cbUsuario.SelectedItem).valor));
+            dt.Columns.Add("IdEstadoServicio", typeof(int));
+            dt.Columns.Add("Bitacora", typeof(string));
+            dt.Rows.Add(Convert.ToInt32(((OpcionCombo)cbUsuario.SelectedItem).valor), 1, "");
             bool respuesta = new CN_Servicio().Registrar(oServ, dt, out mensaje);
-            if(respuesta)
-                MessageBox.Show("Servicio generado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (respuesta)
+            {
+                MessageBox.Show("Servicio " + CodigoServicio + " generado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                limpiar();
+            }
             else
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -114,6 +122,15 @@ namespace AsignacionServicios
                     txtCodigo.Select();
                 }
             }
+        }
+        private void limpiar()
+        {
+            txtCodigo.Text = "";
+            txtCodigo.BackColor = Color.White;
+            txtRazon.Text = "";
+            txtDescricpcion.Text = "";
+            cbFactura.Checked = false;
+            cbHojaServicio.Checked = false;
         }
     }
 }

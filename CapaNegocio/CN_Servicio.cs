@@ -30,5 +30,29 @@ namespace CapaNegocio
             else
                 return false;
         }
+        public List<Servicio> Listar(string fecha)
+        {
+            return oCNServicio.Listar(fecha);
+        }
+        public bool Editar(Servicio oServicio, out string Mensaje)
+        {
+            Mensaje = string.Empty;
+            if (oServicio.Solucion == string.Empty)
+                Mensaje += "Es necesario una solución\n";
+            if (Mensaje != string.Empty)
+                return false;
+            else
+                return oCNServicio.Editar(oServicio, out Mensaje);
+        }
+        public Servicio obtenerServicio(string numero)
+        {
+            Servicio oServicio = oCNServicio.obtenerServicio(numero);
+            if (oServicio.IdServicio != 0)
+            {
+                List<Movimiento> ls = oCNServicio.obtenerDetalle(oServicio.IdServicio);
+                oServicio.oDetalleServicio = ls;
+            }
+            return oServicio;
+        }
     }
 }

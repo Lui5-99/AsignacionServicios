@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
 using System.Windows;
+using AsignacionServicios.Modales;
 
 namespace AsignacionServicios
 {
@@ -95,6 +96,17 @@ namespace AsignacionServicios
         private void menuClientes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmClientes());
+        }
+
+        private void SubMenuDetalles_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario((IconMenuItem)sender, new frmMovimiento());
+        }
+
+        private void menuAcercade_Click(object sender, EventArgs e)
+        {
+            var modal = new mdAcercade();
+            var result = modal.ShowDialog();
         }
     }
 }

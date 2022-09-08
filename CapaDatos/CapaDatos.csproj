@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CD_Cliente.cs" />
+    <Compile Include="CD_EstadoServicio.cs" />
     <Compile Include="CD_Permiso.cs" />
     <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_Servicio.cs" />

@@ -104,6 +104,12 @@
     <Compile Include="frmModServicios.Designer.cs">
       <DependentUpon>frmModServicios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMovimiento.Designer.cs">
+      <DependentUpon>frmMovimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdAcercade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdAcercade.Designer.cs">
+      <DependentUpon>mdAcercade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\mdCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,9 @@
     <EmbeddedResource Include="frmModServicios.resx">
       <DependentUpon>frmModServicios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMovimiento.resx">
+      <DependentUpon>frmMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdAcercade.resx">
+      <DependentUpon>mdAcercade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdCliente.resx">
       <DependentUpon>mdCliente.cs</DependentUpon>

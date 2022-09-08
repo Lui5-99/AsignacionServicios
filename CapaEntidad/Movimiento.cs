@@ -11,6 +11,8 @@ namespace CapaEntidad
         public int IdMovimiento { get; set; }
         public Servicio oServicio { get; set; }
         public Usuario oUsuario { get; set; }
+        public EstadoServicio oEstado { get; set; }
+        public string Bitacora { get; set; }
         public string FechaRegistro { get; set; }
     }
 }

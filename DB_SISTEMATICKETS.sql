@@ -60,11 +60,11 @@ CREATE TABLE SERVICIO(
 	IdServicio int primary key identity,
 	IdUsuario int references USUARIO(IdUsuario),
 	IdUAsignado int references USUARIO(IdUsuario),
-	IdCliente int references CLIENTE(IdCliente),
+	CodigoServicio varchar (50),
+	RazonSocial varchar(50),
 	Factura bit,
 	HojaServicio bit,
 	IdEstadoServicio int references ESTADOSERVICIO(IdEstadoServicio),
-	Bitacora varchar(250),
 	Descripcion varchar(250),
 	Solucion varchar(250),
 	FechaRegistro datetime default getdate()
@@ -76,6 +76,8 @@ CREATE TABLE MOVIMIENTO(
 	IdMovimiento int primary key identity,
 	IdServicio int references SERVICIO(IdServicio),
 	IdUsuario int references USUARIO(IdUsuario),
+	IdEstadoServicio int references ESTADOSERVICIO(IdEstadoServicio),
+	Bitacora VARCHAR(500),
 	FechaRegistro datetime default getdate()
 )
 
@@ -255,7 +257,9 @@ GO
 /* ---------- PROCEDIMIENTOS PARA USUARIOS -----------------*/
 /* -----------PROCESOS PARA REGISTRAR UN SERVICIO---------- */
 CREATE TYPE [dbo].[EMovimiento] AS TABLE(
-	[IdUsuario] int NULL
+	[IdUsuario] int NULL,
+	[IdEstadoServicio] int null,
+	[Bitacora] VARCHAR(500)
 )
 
 
@@ -263,7 +267,8 @@ GO
 CREATE PROCEDURE sp_RegistrarServicio(
 @IdUsuario int,
 @IdUAsignado int,
-@IdCliente int,
+@CodigoServicio varchar (50),
+@RazonSocial varchar(50),
 @IdEstadoServicio int,
 @Factura bit,
 @HojaServicio bit,
@@ -283,13 +288,13 @@ begin
 
 		begin transaction registro
 
-		insert into SERVICIO(IdUsuario,IdUAsignado,IdCliente,IdEstadoServicio,Factura,HojaServicio,Descripcion)
-		values(@IdUsuario,@IdUAsignado,@IdCliente,@IdEstadoServicio,@Factura,@HojaServicio,@Descripcion)
+		insert into SERVICIO(IdUsuario,IdUAsignado,RazonSocial,CodigoServicio,IdEstadoServicio,Factura,HojaServicio,Descripcion)
+		values(@IdUsuario,@IdUAsignado,@RazonSocial,@CodigoServicio,@IdEstadoServicio,@Factura,@HojaServicio,@Descripcion)
 
 		set @IdServicio = SCOPE_IDENTITY()
 
-		insert into MOVIMIENTO(IdServicio,IdUsuario)
-		select @IdServicio, IdUsuario from @DetalleMovimiento
+		insert into MOVIMIENTO(IdServicio,IdUsuario, IdEstadoServicio)
+		select @IdServicio, IdUsuario, IdEstadoServicio from @DetalleMovimiento
 
 		commit transaction registro
 
@@ -306,7 +311,72 @@ end
 
 GO
 
+/* -----------PROCESOS PARA MODIFICAR UN SERVICIO---------- */
+create PROC sp_ModificarServicio(
+@IdServicio int,
+@IdUAsignado int,
+@IdEstadoServicio int,
+@Descripcion varchar(50),
+@Solucion varchar(50),
+@Resultado bit output,
+@Mensaje varchar(500) output
+)as
+begin
+	SET @Resultado = 1
+	DECLARE @IDPERSONA INT 
+	IF EXISTS (SELECT * FROM SERVICIO WHERE IdServicio = @IdServicio)
+	begin
+		update Servicio set
+		IdUAsignado = @IdUAsignado,
+		IdEstadoServicio = @IdEstadoServicio,
+		Descripcion = @Descripcion,
+		Solucion = @Solucion,
+		FechaRegistro = getdate()
+		where IdServicio = @IdServicio
+	end
+	else
+	begin
+		SET @Resultado = 0
+		set @Mensaje = 'No se pudo actualizar el servicio'
+	end
+
+	IF(@Resultado != 0)
+	BEGIN
+		insert into Movimiento(IdServicio, IdUsuario, IdEstadoServicio, Bitacora) values (@IdServicio, @IdUAsignado, @IdEstadoServicio, @Solucion)
+	end
+	ELSE
+	BEGIN
+		SET @Resultado = 0
+		set @Mensaje = 'No se pudo crear el Movimiento'
+	end
+end
+
+GO
+
 /**/
 insert into ESTADOSERVICIO(descripcion) values('Pendiente')
 insert into ESTADOSERVICIO(descripcion) values('Finalizado')
 insert into ESTADOSERVICIO(descripcion) values('No Completado')
+
+insert into Rol(Descripcion) values ('SUPERVISOR')
+insert into Rol(Descripcion) values ('SOPORTE')
+
+insert into USUARIO(Documento, NombreCompleto, Correo, Clave, IdRol, Estado) 
+values ('Supervisor', 'Supervisor', '@gmail.com', '123456', 1, 1)
+
+insert into USUARIO(Documento, NombreCompleto, Correo, Clave, IdRol, Estado) 
+values ('Soporte', 'Soporte', '@gmail.com', '789456', 2, 1)
+
+
+insert into Permiso(IdRol, NombreMenu, Estado) 
+values (1,	'menuUsuario', 1),
+	   (1,	'menuServicio', 1),
+       (1,	'menuClientes', 1),
+       (1,	'menuConfiguracion', 1),
+	   (1,	'menuAcercade', 1)
+insert into Permiso(IdRol, NombreMenu, Estado) 
+values (2,	'menuUsuario', 0),
+       (2,	'menuServicio', 1),
+       (2,	'menuClientes', 0),
+       (2,	'menuConfiguracion', 0),
+       (2, 	'menuAcercade', 0)
