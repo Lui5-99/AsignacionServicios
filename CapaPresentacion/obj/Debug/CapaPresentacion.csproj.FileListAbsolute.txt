@@ -68,3 +68,8 @@ C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\Asi
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmModServicios.resources
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmMovimiento.resources
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.Modales.mdAcercade.resources
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.Modales.mdServicios.resources
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\bin\Debug\AsignacionServicios.exe.manifest
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\bin\Debug\AsignacionServicios.application
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.exe.manifest
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.application

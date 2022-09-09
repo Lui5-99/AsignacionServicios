@@ -11,6 +11,7 @@ using FontAwesome.Sharp;
 using CapaEntidad;
 using CapaNegocio;
 using AsignacionServicios;
+using AsignacionServicios.Utilidades;
 
 namespace CapaPresentacion
 {
@@ -29,7 +30,7 @@ namespace CapaPresentacion
         private void btIngresar_Click(object sender, EventArgs e)
         {
             Usuario oUsuario = new CN_Usuario().Listar(0).Where(
-                u => u.User == txtUser.Text && u.Clave == txtPwd.Text).FirstOrDefault();
+                u => u.User == txtUser.Text && u.Clave == cSeguridad.Encrypt(txtPwd.Text)).FirstOrDefault();
             if(oUsuario != null)
             {
                 Inicio oInicio = new Inicio(oUsuario);

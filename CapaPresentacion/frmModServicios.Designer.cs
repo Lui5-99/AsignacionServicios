@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblId = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -37,18 +37,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtDescricpcion = new System.Windows.Forms.RichTextBox();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.lblIndice = new System.Windows.Forms.Label();
-            this.btAdd = new FontAwesome.Sharp.IconButton();
-            this.ckbFactura = new System.Windows.Forms.CheckBox();
-            this.ckbHojaServicio = new System.Windows.Forms.CheckBox();
-            this.cbEstado = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSolucion = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbUsuario = new System.Windows.Forms.ComboBox();
-            this.btLimpiar = new FontAwesome.Sharp.IconButton();
             this.vacio = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +52,18 @@
             this.Solucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HojaServicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblIndice = new System.Windows.Forms.Label();
+            this.btAdd = new FontAwesome.Sharp.IconButton();
+            this.ckbFactura = new System.Windows.Forms.CheckBox();
+            this.ckbHojaServicio = new System.Windows.Forms.CheckBox();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSolucion = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbUsuario = new System.Windows.Forms.ComboBox();
+            this.btLimpiar = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
@@ -140,15 +140,15 @@
             // 
             this.dgvDatos.AllowUserToAddRows = false;
             this.dgvDatos.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDatos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.vacio,
@@ -173,14 +173,121 @@
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
             this.dgvDatos.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvDatos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvDatos.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDatos.RowTemplate.Height = 28;
             this.dgvDatos.Size = new System.Drawing.Size(602, 155);
             this.dgvDatos.TabIndex = 20;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             this.dgvDatos.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatos_CellPainting);
+            // 
+            // vacio
+            // 
+            this.vacio.HeaderText = "";
+            this.vacio.MinimumWidth = 6;
+            this.vacio.Name = "vacio";
+            this.vacio.ReadOnly = true;
+            this.vacio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.vacio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.vacio.Width = 30;
+            // 
+            // IdServicio
+            // 
+            this.IdServicio.HeaderText = "IdServicio";
+            this.IdServicio.Name = "IdServicio";
+            this.IdServicio.ReadOnly = true;
+            this.IdServicio.Visible = false;
+            // 
+            // CodigoServicio
+            // 
+            this.CodigoServicio.HeaderText = "Codigo Servicio";
+            this.CodigoServicio.Name = "CodigoServicio";
+            this.CodigoServicio.ReadOnly = true;
+            // 
+            // Cliente
+            // 
+            this.Cliente.HeaderText = "Cliente";
+            this.Cliente.Name = "Cliente";
+            this.Cliente.ReadOnly = true;
+            this.Cliente.Width = 200;
+            // 
+            // IdUsuario
+            // 
+            this.IdUsuario.HeaderText = "IdUsuario";
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.ReadOnly = true;
+            this.IdUsuario.Visible = false;
+            // 
+            // Supervisor
+            // 
+            this.Supervisor.HeaderText = "Supervisor";
+            this.Supervisor.Name = "Supervisor";
+            this.Supervisor.ReadOnly = true;
+            this.Supervisor.Width = 150;
+            // 
+            // IdUAsignado
+            // 
+            this.IdUAsignado.HeaderText = "IdUAsignado";
+            this.IdUAsignado.Name = "IdUAsignado";
+            this.IdUAsignado.ReadOnly = true;
+            this.IdUAsignado.Visible = false;
+            // 
+            // Usuario
+            // 
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            this.Usuario.Width = 150;
+            // 
+            // IdEstado
+            // 
+            this.IdEstado.HeaderText = "IdEstado";
+            this.IdEstado.Name = "IdEstado";
+            this.IdEstado.ReadOnly = true;
+            this.IdEstado.Visible = false;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 150;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 150;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Visible = false;
+            // 
+            // Solucion
+            // 
+            this.Solucion.HeaderText = "Solucion";
+            this.Solucion.Name = "Solucion";
+            this.Solucion.ReadOnly = true;
+            this.Solucion.Visible = false;
+            // 
+            // HojaServicio
+            // 
+            this.HojaServicio.HeaderText = "HojaServicio";
+            this.HojaServicio.Name = "HojaServicio";
+            this.HojaServicio.ReadOnly = true;
+            this.HojaServicio.Visible = false;
+            // 
+            // Factura
+            // 
+            this.Factura.HeaderText = "Factura";
+            this.Factura.Name = "Factura";
+            this.Factura.ReadOnly = true;
+            this.Factura.Visible = false;
             // 
             // lblIndice
             // 
@@ -325,113 +432,6 @@
             this.btLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btLimpiar.UseVisualStyleBackColor = false;
             this.btLimpiar.Click += new System.EventHandler(this.btLimpiar_Click);
-            // 
-            // vacio
-            // 
-            this.vacio.HeaderText = "";
-            this.vacio.MinimumWidth = 6;
-            this.vacio.Name = "vacio";
-            this.vacio.ReadOnly = true;
-            this.vacio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.vacio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.vacio.Width = 30;
-            // 
-            // IdServicio
-            // 
-            this.IdServicio.HeaderText = "IdServicio";
-            this.IdServicio.Name = "IdServicio";
-            this.IdServicio.ReadOnly = true;
-            this.IdServicio.Visible = false;
-            // 
-            // CodigoServicio
-            // 
-            this.CodigoServicio.HeaderText = "Codigo Servicio";
-            this.CodigoServicio.Name = "CodigoServicio";
-            this.CodigoServicio.ReadOnly = true;
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            this.Cliente.Width = 200;
-            // 
-            // IdUsuario
-            // 
-            this.IdUsuario.HeaderText = "IdUsuario";
-            this.IdUsuario.Name = "IdUsuario";
-            this.IdUsuario.ReadOnly = true;
-            this.IdUsuario.Visible = false;
-            // 
-            // Supervisor
-            // 
-            this.Supervisor.HeaderText = "Supervisor";
-            this.Supervisor.Name = "Supervisor";
-            this.Supervisor.ReadOnly = true;
-            this.Supervisor.Width = 150;
-            // 
-            // IdUAsignado
-            // 
-            this.IdUAsignado.HeaderText = "IdUAsignado";
-            this.IdUAsignado.Name = "IdUAsignado";
-            this.IdUAsignado.ReadOnly = true;
-            this.IdUAsignado.Visible = false;
-            // 
-            // Usuario
-            // 
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            this.Usuario.Width = 150;
-            // 
-            // IdEstado
-            // 
-            this.IdEstado.HeaderText = "IdEstado";
-            this.IdEstado.Name = "IdEstado";
-            this.IdEstado.ReadOnly = true;
-            this.IdEstado.Visible = false;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 150;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Width = 150;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Visible = false;
-            // 
-            // Solucion
-            // 
-            this.Solucion.HeaderText = "Solucion";
-            this.Solucion.Name = "Solucion";
-            this.Solucion.ReadOnly = true;
-            this.Solucion.Visible = false;
-            // 
-            // HojaServicio
-            // 
-            this.HojaServicio.HeaderText = "HojaServicio";
-            this.HojaServicio.Name = "HojaServicio";
-            this.HojaServicio.ReadOnly = true;
-            this.HojaServicio.Visible = false;
-            // 
-            // Factura
-            // 
-            this.Factura.HeaderText = "Factura";
-            this.Factura.Name = "Factura";
-            this.Factura.ReadOnly = true;
-            this.Factura.Visible = false;
             // 
             // frmModServicios
             // 

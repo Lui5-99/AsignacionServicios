@@ -61,7 +61,7 @@ namespace CapaDatos
             //@Resultado int output,
             //@Mensaje varchar(500) output
             int idClientegenerado = 0;
-            Mensaje = String.Empty;
+            Mensaje = string.Empty;
             try
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
@@ -80,7 +80,7 @@ namespace CapaDatos
                     cmd.ExecuteNonQuery();
 
                     idClientegenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString() + "\n";
 
                     oConexion.Close();
                 }
@@ -129,6 +129,40 @@ namespace CapaDatos
                 }
             }
             return ls;
+        }
+        public int CountClientesComercial()
+        {
+            string CadenaComercial = @"Data Source=192.168.1.85\COMPAC;Initial Catalog=adEdgar;Persist Security Info=True;User ID=sa; password=contpaqi;";
+            int result = 0;
+            using (SqlConnection oConexion = new SqlConnection(CadenaComercial))
+            {
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("SELECT count(*) results ");
+                    query.AppendLine("FROM admClientes ");
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
+                    cmd.CommandType = CommandType.Text;
+                    oConexion.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                result = Convert.ToInt32(reader["results"].ToString());
+                            }
+                        }
+
+                    }
+                    oConexion.Close();
+                }
+                catch (Exception ex)
+                {
+                    result = 0;
+                }
+            }
+            return result;
         }
         public bool Editar(Cliente oCliente, out string Mensaje)
         {
@@ -183,6 +217,7 @@ namespace CapaDatos
                 {
                     SqlCommand cmd = new SqlCommand("delete from cliente where IdCliente = @Id");
                     cmd.Parameters.AddWithValue("@Id", oCliente.IdCliente);
+                    cmd.CommandType = CommandType.Text;
                     oConexion.Open();
                     respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
                     oConexion.Close();

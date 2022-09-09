@@ -10,13 +10,16 @@ using System.Windows.Forms;
 using CapaNegocio;
 using CapaPresentacion.Utilidades;
 using CapaEntidad;
+using AsignacionServicios.Utilidades;
 
 namespace AsignacionServicios
 {
     public partial class frmUsuarios : Form
     {
-        public frmUsuarios()
+        private Usuario _Usuario;
+        public frmUsuarios(Usuario oUsuario = null)
         {
+            _Usuario = oUsuario;
             InitializeComponent();
         }
 
@@ -74,7 +77,7 @@ namespace AsignacionServicios
                     item.User,
                     item.Nombre,
                     item.Correo,
-                    item.Clave,
+                    cSeguridad.Decrypt(item.Clave),
                     item.oRol.IdRol,
                     item.oRol.Descripcion,
                     item.Estado == true ? 1 : 0,
@@ -82,6 +85,11 @@ namespace AsignacionServicios
                 });
             }
             txtUsuario.Select();
+            if(_Usuario.IdUsuario == 1)
+            {
+                txtPwd.UseSystemPasswordChar = false;
+                txtPwd2.UseSystemPasswordChar = false;
+            }
         }
 
         private void btGuardar_Click(object sender, EventArgs e)
@@ -93,7 +101,7 @@ namespace AsignacionServicios
                 User = txtUsuario.Text,
                 Nombre = txtNombre.Text,
                 Correo = txtCorreo.Text,
-                Clave = txtPwd.Text,
+                Clave = cSeguridad.Encrypt(txtPwd.Text),
                 oRol = new Rol()
                 {
                     IdRol = Convert.ToInt32(((OpcionCombo)cbRol.SelectedItem).valor),

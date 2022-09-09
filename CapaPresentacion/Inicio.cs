@@ -39,9 +39,13 @@ namespace AsignacionServicios
                     );
                 if (!encontrado)
                     iconMenu.Visible = false;
-                if(IdRolActual != 1)
+                if(IdRolActual == 4)
                 {
                     subMenuAgregar.Text = "Ver";
+                }
+                if(IdRolActual == 1)
+                {
+                    subMenuVer.Visible = true;
                 }
             }
         }
@@ -68,7 +72,7 @@ namespace AsignacionServicios
 
         private void menuUsuario_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmUsuarios());
+            AbrirFormulario((IconMenuItem)sender, new frmUsuarios(usuarioActual));
         }
 
         private void menuConfiguracion_Click(object sender, EventArgs e)
@@ -83,7 +87,7 @@ namespace AsignacionServicios
 
         private void subMenuAgregar_Click(object sender, EventArgs e)
         {
-            if(IdRolActual == 1)
+            if(IdRolActual != 4)
             {
                 AbrirFormulario((IconMenuItem)sender, new frmServicios(usuarioActual));
             }
@@ -107,6 +111,11 @@ namespace AsignacionServicios
         {
             var modal = new mdAcercade();
             var result = modal.ShowDialog();
+        }
+
+        private void subMenuVer_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario((IconMenuItem)sender, new frmModServicios(usuarioActual));
         }
     }
 }

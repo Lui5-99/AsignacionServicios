@@ -41,6 +41,7 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.menuTitulo = new System.Windows.Forms.MenuStrip();
             this.contenedor = new System.Windows.Forms.Panel();
+            this.subMenuVer = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +82,7 @@
             this.menuServicio.BackColor = System.Drawing.SystemColors.Control;
             this.menuServicio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.subMenuAgregar,
+            this.subMenuVer,
             this.SubMenuDetalles});
             this.menuServicio.IconChar = FontAwesome.Sharp.IconChar.Toolbox;
             this.menuServicio.IconColor = System.Drawing.Color.Black;
@@ -99,7 +101,7 @@
             this.subMenuAgregar.IconColor = System.Drawing.Color.Black;
             this.subMenuAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.subMenuAgregar.Name = "subMenuAgregar";
-            this.subMenuAgregar.Size = new System.Drawing.Size(115, 22);
+            this.subMenuAgregar.Size = new System.Drawing.Size(184, 26);
             this.subMenuAgregar.Text = "Nuevo";
             this.subMenuAgregar.Click += new System.EventHandler(this.subMenuAgregar_Click);
             // 
@@ -109,7 +111,7 @@
             this.SubMenuDetalles.IconColor = System.Drawing.Color.Black;
             this.SubMenuDetalles.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SubMenuDetalles.Name = "SubMenuDetalles";
-            this.SubMenuDetalles.Size = new System.Drawing.Size(115, 22);
+            this.SubMenuDetalles.Size = new System.Drawing.Size(184, 26);
             this.SubMenuDetalles.Text = "Detalles";
             this.SubMenuDetalles.Click += new System.EventHandler(this.SubMenuDetalles_Click);
             // 
@@ -215,6 +217,17 @@
             this.contenedor.Size = new System.Drawing.Size(1019, 492);
             this.contenedor.TabIndex = 3;
             // 
+            // subMenuVer
+            // 
+            this.subMenuVer.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.subMenuVer.IconColor = System.Drawing.Color.Black;
+            this.subMenuVer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.subMenuVer.Name = "subMenuVer";
+            this.subMenuVer.Size = new System.Drawing.Size(184, 26);
+            this.subMenuVer.Text = "Ver";
+            this.subMenuVer.Visible = false;
+            this.subMenuVer.Click += new System.EventHandler(this.subMenuVer_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,5 +265,6 @@
         private System.Windows.Forms.Panel contenedor;
         private FontAwesome.Sharp.IconMenuItem subMenuAgregar;
         private FontAwesome.Sharp.IconMenuItem SubMenuDetalles;
+        private FontAwesome.Sharp.IconMenuItem subMenuVer;
     }
 }

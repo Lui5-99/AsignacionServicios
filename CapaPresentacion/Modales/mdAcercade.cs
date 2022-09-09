@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,20 @@ namespace AsignacionServicios.Modales
         public mdAcercade()
         {
             InitializeComponent();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            redirect(linkLabel1.Text);
+        }
+        public void redirect(string url)
+        {
+            var processStartInfo = new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                FileName = url
+            };
+            Process.Start(processStartInfo);
         }
     }
 }

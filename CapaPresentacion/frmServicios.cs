@@ -92,7 +92,7 @@ namespace AsignacionServicios
             dt.Columns.Add("IdUsuario", typeof(int));
             dt.Columns.Add("IdEstadoServicio", typeof(int));
             dt.Columns.Add("Bitacora", typeof(string));
-            dt.Rows.Add(Convert.ToInt32(((OpcionCombo)cbUsuario.SelectedItem).valor), 1, "");
+            dt.Rows.Add(_Usuario.IdUsuario, 1, "Creación del servicio");
             bool respuesta = new CN_Servicio().Registrar(oServ, dt, out mensaje);
             if (respuesta)
             {

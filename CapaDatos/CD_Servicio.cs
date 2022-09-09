@@ -259,7 +259,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select M.IdMovimiento, U.IdUsuario, U.Documento,   ");
+                    query.AppendLine("select M.IdMovimiento, U.IdUsuario, U.UserName,   ");
                     query.AppendLine("ES.IdEstadoServicio, ES.Descripcion, M.Bitacora ,M.FechaRegistro ");
                     query.AppendLine("from MOVIMIENTO M  ");
                     query.AppendLine("INNER JOIN USUARIO U ON M.IdUsuario = U.IdUsuario  ");
@@ -281,7 +281,7 @@ namespace CapaDatos
                                 oUsuario = new Usuario()
                                 {
                                     IdUsuario = Convert.ToInt32(reader["IdUsuario"].ToString()),
-                                    User = reader["Documento"].ToString()
+                                    User = reader["UserName"].ToString()
                                 },
                                 oEstado = new EstadoServicio()
                                 {

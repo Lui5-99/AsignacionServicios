@@ -1,4 +1,5 @@
-﻿using CapaEntidad;
+﻿using AsignacionServicios.Modales;
+using CapaEntidad;
 using CapaNegocio;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -40,6 +41,20 @@ namespace AsignacionServicios
 
         private void btBusqueda_Click(object sender, EventArgs e)
         {
+            using (var modal = new mdServicios())
+            {
+                var result = modal.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    txtBusqueda.Text = modal._Servicio.CodigoServicio.ToString();
+                }
+                else
+                {
+                    txtBusqueda.BackColor = Color.MistyRose;
+                    txtBusqueda.Text = "";
+                }
+            }
             Servicio oServ = new CN_Servicio().obtenerServicio(txtBusqueda.Text);
             if(oServ.IdServicio != 0)
             {
@@ -50,6 +65,7 @@ namespace AsignacionServicios
                 txtAsignado.Text = oServ.oAsignado.Nombre;
                 txtCodigoCliente.Text = oServ.oCliente.Codigo;
                 txtCliente.Text = oServ.oCliente.RazonSocial;
+                txtSolucion.Text = "";
                 dgvDatos.Rows.Clear();
                 foreach (Movimiento dc in oServ.oDetalleServicio)
                 {
@@ -117,6 +133,7 @@ namespace AsignacionServicios
                     txtAsignado.Text = "";
                     txtCodigoCliente.Text = "";
                     txtCliente.Text = "";
+                    txtSolucion.Text = "";
 
                     dgvDatos.Rows.Clear();
                 }

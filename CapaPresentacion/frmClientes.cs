@@ -258,6 +258,7 @@ namespace AsignacionServicios
         {
             int errores = 0;
             string mensaje = string.Empty;
+            string error = string.Empty;
             int result = 0;
             List<Cliente> ls = new CN_Cliente().ListarComercial();
             foreach(Cliente item in ls)
@@ -274,7 +275,7 @@ namespace AsignacionServicios
                 if(result == 0)
                 {
                     errores++;
-                    mensaje += mensaje;
+                    error += mensaje;
                 }
             }
             if(errores == 0)
@@ -283,7 +284,9 @@ namespace AsignacionServicios
             }
             else
             {
-                MessageBox.Show("Error en \n" + mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                var dialog = MessageBox.Show("¿Copiar el error?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialog == DialogResult.Yes)
+                    Clipboard.SetText(error);
             }
             load();
         }

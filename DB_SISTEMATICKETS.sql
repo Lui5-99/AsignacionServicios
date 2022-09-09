@@ -1,6 +1,6 @@
-CREATE DATABASE DB_SISTEMATICKETS
+/*CREATE DATABASE DB_SISTEMATICKETS
 
-GO
+GO*/
 
 USE DB_SISTEMATICKETS
 
@@ -45,7 +45,7 @@ GO
 
 CREATE TABLE USUARIO(
 	IdUsuario int primary key identity,
-	Documento varchar(50),
+	UserName varchar(50),
 	NombreCompleto varchar(50),
 	Correo varchar(50),
 	Clave varchar(50),
@@ -92,7 +92,7 @@ go
 
 /* ---------- PROCEDIMIENTOS PARA CREAR USUARIOS -----------------*/
 create PROC SP_REGISTRARUSUARIO(
-@Documento varchar(50),
+@UserName varchar(50),
 @NombreCompleto varchar(100),
 @Correo varchar(100),
 @Clave varchar(100),
@@ -107,16 +107,16 @@ begin
 	set @Mensaje = ''
 
 
-	if not exists(select * from USUARIO where Documento = @Documento)
+	if not exists(select * from USUARIO where UserName = @UserName)
 	begin
-		insert into usuario(Documento,NombreCompleto,Correo,Clave,IdRol,Estado) values
-		(@Documento,@NombreCompleto,@Correo,@Clave,@IdRol,@Estado)
+		insert into usuario(UserName,NombreCompleto,Correo,Clave,IdRol,Estado) values
+		(@UserName,@NombreCompleto,@Correo,@Clave,@IdRol,@Estado)
 
 		set @IdUsuarioResultado = SCOPE_IDENTITY()
 		
 	end
 	else
-		set @Mensaje = 'No se puede repetir el usuario'
+		set @Mensaje = 'El Usuario  ya existe'
 
 
 end
@@ -126,7 +126,7 @@ go
 /* ---------- PROCEDIMIENTOS PARA EDITAR USUARIOS -----------------*/
 create PROC SP_EDITARUSUARIO(
 @IdUsuario int,
-@Documento varchar(50),
+@UserName varchar(50),
 @NombreCompleto varchar(100),
 @Correo varchar(100),
 @Clave varchar(100),
@@ -141,10 +141,10 @@ begin
 	set @Mensaje = ''
 
 
-	if not exists(select * from USUARIO where Documento = @Documento and idusuario != @IdUsuario)
+	if not exists(select * from USUARIO where UserName = @UserName and idusuario != @IdUsuario)
 	begin
 		update  usuario set
-		Documento = @Documento,
+		UserName = @UserName,
 		NombreCompleto = @NombreCompleto,
 		Correo = @Correo,
 		Clave = @Clave,
@@ -217,7 +217,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'El cliente ya existe'
+		set @Mensaje = 'El Cliente ' + @Codigo + ' - ' + @RazonSocial  + ' ya existe'
 end
 
 go
@@ -293,8 +293,8 @@ begin
 
 		set @IdServicio = SCOPE_IDENTITY()
 
-		insert into MOVIMIENTO(IdServicio,IdUsuario, IdEstadoServicio)
-		select @IdServicio, IdUsuario, IdEstadoServicio from @DetalleMovimiento
+		insert into MOVIMIENTO(IdServicio,IdUsuario, IdEstadoServicio, Bitacora)
+		select @IdServicio, IdUsuario, IdEstadoServicio, Bitacora from @DetalleMovimiento
 
 		commit transaction registro
 
@@ -330,8 +330,7 @@ begin
 		IdUAsignado = @IdUAsignado,
 		IdEstadoServicio = @IdEstadoServicio,
 		Descripcion = @Descripcion,
-		Solucion = @Solucion,
-		FechaRegistro = getdate()
+		Solucion = @Solucion
 		where IdServicio = @IdServicio
 	end
 	else
@@ -354,29 +353,57 @@ end
 GO
 
 /**/
-insert into ESTADOSERVICIO(descripcion) values('Pendiente')
-insert into ESTADOSERVICIO(descripcion) values('Finalizado')
-insert into ESTADOSERVICIO(descripcion) values('No Completado')
+insert into ESTADOSERVICIO(descripcion) values('Pendiente'),
+											  ('Finalizado'),
+                                              ('No Completado')
 
-insert into Rol(Descripcion) values ('SUPERVISOR')
-insert into Rol(Descripcion) values ('SOPORTE')
+insert into Rol(Descripcion) values ('ADMINISTRADOR'),
+                                    ('SUPERVISOR'),
+									('VENTAS/COMPRAS'),
+									('SOPORTE'),
+									('DESARROLLO'),
+									('COBRANZA')
 
-insert into USUARIO(Documento, NombreCompleto, Correo, Clave, IdRol, Estado) 
-values ('Supervisor', 'Supervisor', '@gmail.com', '123456', 1, 1)
-
-insert into USUARIO(Documento, NombreCompleto, Correo, Clave, IdRol, Estado) 
-values ('Soporte', 'Soporte', '@gmail.com', '789456', 2, 1)
-
+insert into USUARIO(UserName, NombreCompleto, Correo, Clave, IdRol, Estado) 
+values ('Admin', 'Adminstrador', '@gmail.com', 'w1whFM059LQ=', 1, 1),
+	   ('Super', 'Supervisor', '@gmail.com', '2IyLhUv5ltc=', 2, 1),
+	   ('Ventas', 'Ventas', '@gmail.com', 'sLQmoonjf+w=', 3, 1),
+       ('Soporte', 'Soporte', '@gmail.com', 'vanymv6+tZg=', 4, 1)
 
 insert into Permiso(IdRol, NombreMenu, Estado) 
+	    /* ADMINISTRADOR */
 values (1,	'menuUsuario', 1),
 	   (1,	'menuServicio', 1),
        (1,	'menuClientes', 1),
        (1,	'menuConfiguracion', 1),
-	   (1,	'menuAcercade', 1)
-insert into Permiso(IdRol, NombreMenu, Estado) 
-values (2,	'menuUsuario', 0),
-       (2,	'menuServicio', 1),
-       (2,	'menuClientes', 0),
-       (2,	'menuConfiguracion', 0),
-       (2, 	'menuAcercade', 0)
+	   (1,	'menuAcercade', 1),
+	   /*  SUPERVISOR  */
+       (2,	'menuUsuario', 0),
+       (2,	'menuServicio', 0),
+       (2,	'menuClientes', 1),
+       (2,	'menuConfiguracion', 1),
+       (2, 	'menuAcercade', 1),
+	   	/*  VENTAS/COMPRAS  */
+       (3,	'menuUsuario', 0),
+       (3,	'menuServicio', 1),
+       (3,	'menuClientes', 1),
+       (3,	'menuConfiguracion', 0),
+       (3, 	'menuAcercade', 1),
+	    /*  SOPORTE  */
+       (4,	'menuUsuario', 0),
+       (4,	'menuServicio', 1),
+       (4,	'menuClientes', 0),
+       (4,	'menuConfiguracion', 0),
+       (4, 	'menuAcercade', 1),
+	    /*  DESARROLLO  */
+       (5,	'menuUsuario', 0),
+       (5,	'menuServicio', 0),
+       (5,	'menuClientes', 0),
+       (5,	'menuConfiguracion', 0),
+       (5, 	'menuAcercade', 1),
+	    /*  COBRANZA  */
+       (6,	'menuUsuario', 0),
+       (6,	'menuServicio', 0),
+       (6,	'menuClientes', 0),
+       (6,	'menuConfiguracion', 0),
+       (6, 	'menuAcercade', 1)

@@ -60,9 +60,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(11, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 20);
+            this.label1.Size = new System.Drawing.Size(196, 20);
             this.label1.TabIndex = 33;
-            this.label1.Text = "Open Source";
+            this.label1.Text = "Asignación de servicios";
             // 
             // linkLabel1
             // 
@@ -73,6 +73,7 @@
             this.linkLabel1.TabIndex = 37;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/Lui5-99/AsignacionServicios";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // mdAcercade
             // 

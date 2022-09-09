@@ -205,6 +205,8 @@ namespace AsignacionServicios
                 {
                     //IdUsuario = Convert.ToInt32(((OpcionCombo)cbUsuario.SelectedItem).valor),
                     //Nombre = ((OpcionCombo)cbUsuario.SelectedItem).texto
+                    IdUsuario = _Usuario.IdUsuario,
+                    Nombre = _Usuario.Nombre
                 },
                 oEstado = new EstadoServicio()
                 {

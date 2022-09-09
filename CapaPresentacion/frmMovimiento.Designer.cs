@@ -35,20 +35,19 @@
             this.btLimpiarbuscador = new FontAwesome.Sharp.IconButton();
             this.btBusqueda = new FontAwesome.Sharp.IconButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.TextBox();
-            this.txtAsignado = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtCodigoServcio = new System.Windows.Forms.TextBox();
-            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtAsignado = new System.Windows.Forms.TextBox();
+            this.txtFecha = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtCodigoCliente = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCodigoServcio = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.txtSolucion = new System.Windows.Forms.RichTextBox();
             this.Vacio = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bitacora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtSolucion = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
@@ -157,6 +157,54 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Servcio";
             // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Location = new System.Drawing.Point(143, 50);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(187, 20);
+            this.txtUsuario.TabIndex = 5;
+            // 
+            // txtAsignado
+            // 
+            this.txtAsignado.Location = new System.Drawing.Point(349, 50);
+            this.txtAsignado.Name = "txtAsignado";
+            this.txtAsignado.Size = new System.Drawing.Size(187, 20);
+            this.txtAsignado.TabIndex = 4;
+            // 
+            // txtFecha
+            // 
+            this.txtFecha.Location = new System.Drawing.Point(7, 50);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(117, 20);
+            this.txtFecha.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(348, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Usuario Asignado";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(140, 31);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Usuario";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Fecha";
+            // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
@@ -172,53 +220,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Cliente";
             // 
-            // label4
+            // txtCodigoCliente
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Fecha";
+            this.txtCodigoCliente.Location = new System.Drawing.Point(7, 35);
+            this.txtCodigoCliente.Name = "txtCodigoCliente";
+            this.txtCodigoCliente.Size = new System.Drawing.Size(175, 20);
+            this.txtCodigoCliente.TabIndex = 8;
             // 
-            // label5
+            // txtCliente
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(140, 31);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Usuario";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(348, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Usuario Asignado";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.Location = new System.Drawing.Point(7, 50);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(117, 20);
-            this.txtFecha.TabIndex = 3;
-            // 
-            // txtAsignado
-            // 
-            this.txtAsignado.Location = new System.Drawing.Point(349, 50);
-            this.txtAsignado.Name = "txtAsignado";
-            this.txtAsignado.Size = new System.Drawing.Size(187, 20);
-            this.txtAsignado.TabIndex = 4;
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Location = new System.Drawing.Point(143, 50);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(187, 20);
-            this.txtUsuario.TabIndex = 5;
+            this.txtCliente.Location = new System.Drawing.Point(204, 35);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(333, 20);
+            this.txtCliente.TabIndex = 7;
             // 
             // label7
             // 
@@ -229,15 +243,6 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Cliente";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Código";
-            // 
             // txtCodigoServcio
             // 
             this.txtCodigoServcio.Location = new System.Drawing.Point(514, 13);
@@ -246,19 +251,14 @@
             this.txtCodigoServcio.TabIndex = 6;
             this.txtCodigoServcio.Visible = false;
             // 
-            // txtCliente
+            // label8
             // 
-            this.txtCliente.Location = new System.Drawing.Point(204, 35);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(333, 20);
-            this.txtCliente.TabIndex = 7;
-            // 
-            // txtCodigoCliente
-            // 
-            this.txtCodigoCliente.Location = new System.Drawing.Point(7, 35);
-            this.txtCodigoCliente.Name = "txtCodigoCliente";
-            this.txtCodigoCliente.Size = new System.Drawing.Size(175, 20);
-            this.txtCodigoCliente.TabIndex = 8;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Código";
             // 
             // dgvDatos
             // 
@@ -280,14 +280,6 @@
             this.dgvDatos.TabIndex = 31;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             this.dgvDatos.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvDatos_CellPainting);
-            // 
-            // txtSolucion
-            // 
-            this.txtSolucion.Location = new System.Drawing.Point(225, 381);
-            this.txtSolucion.Name = "txtSolucion";
-            this.txtSolucion.Size = new System.Drawing.Size(574, 86);
-            this.txtSolucion.TabIndex = 32;
-            this.txtSolucion.Text = "";
             // 
             // Vacio
             // 
@@ -332,6 +324,15 @@
             this.Bitacora.HeaderText = "Bitacora";
             this.Bitacora.Name = "Bitacora";
             this.Bitacora.Visible = false;
+            // 
+            // txtSolucion
+            // 
+            this.txtSolucion.Enabled = false;
+            this.txtSolucion.Location = new System.Drawing.Point(225, 381);
+            this.txtSolucion.Name = "txtSolucion";
+            this.txtSolucion.Size = new System.Drawing.Size(574, 86);
+            this.txtSolucion.TabIndex = 32;
+            this.txtSolucion.Text = "";
             // 
             // frmMovimiento
             // 
