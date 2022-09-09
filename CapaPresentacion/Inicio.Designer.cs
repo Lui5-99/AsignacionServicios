@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuUsuario = new FontAwesome.Sharp.IconMenuItem();
             this.menuServicio = new FontAwesome.Sharp.IconMenuItem();
             this.subMenuAgregar = new FontAwesome.Sharp.IconMenuItem();
+            this.subMenuVer = new FontAwesome.Sharp.IconMenuItem();
             this.SubMenuDetalles = new FontAwesome.Sharp.IconMenuItem();
             this.menuClientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuConfiguracion = new FontAwesome.Sharp.IconMenuItem();
@@ -41,12 +43,12 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.menuTitulo = new System.Windows.Forms.MenuStrip();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.subMenuVer = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
             // 
+            this.menu.BackColor = System.Drawing.Color.White;
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuUsuario,
@@ -64,7 +66,7 @@
             // menuUsuario
             // 
             this.menuUsuario.AutoSize = false;
-            this.menuUsuario.BackColor = System.Drawing.SystemColors.Control;
+            this.menuUsuario.BackColor = System.Drawing.Color.White;
             this.menuUsuario.IconChar = FontAwesome.Sharp.IconChar.UsersCog;
             this.menuUsuario.IconColor = System.Drawing.Color.Black;
             this.menuUsuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -79,7 +81,7 @@
             // menuServicio
             // 
             this.menuServicio.AutoSize = false;
-            this.menuServicio.BackColor = System.Drawing.SystemColors.Control;
+            this.menuServicio.BackColor = System.Drawing.Color.White;
             this.menuServicio.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.subMenuAgregar,
             this.subMenuVer,
@@ -105,6 +107,17 @@
             this.subMenuAgregar.Text = "Nuevo";
             this.subMenuAgregar.Click += new System.EventHandler(this.subMenuAgregar_Click);
             // 
+            // subMenuVer
+            // 
+            this.subMenuVer.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.subMenuVer.IconColor = System.Drawing.Color.Black;
+            this.subMenuVer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.subMenuVer.Name = "subMenuVer";
+            this.subMenuVer.Size = new System.Drawing.Size(184, 26);
+            this.subMenuVer.Text = "Ver";
+            this.subMenuVer.Visible = false;
+            this.subMenuVer.Click += new System.EventHandler(this.subMenuVer_Click);
+            // 
             // SubMenuDetalles
             // 
             this.SubMenuDetalles.IconChar = FontAwesome.Sharp.IconChar.None;
@@ -118,7 +131,7 @@
             // menuClientes
             // 
             this.menuClientes.AutoSize = false;
-            this.menuClientes.BackColor = System.Drawing.SystemColors.Control;
+            this.menuClientes.BackColor = System.Drawing.Color.White;
             this.menuClientes.IconChar = FontAwesome.Sharp.IconChar.Users;
             this.menuClientes.IconColor = System.Drawing.Color.Black;
             this.menuClientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -133,7 +146,7 @@
             // menuConfiguracion
             // 
             this.menuConfiguracion.AutoSize = false;
-            this.menuConfiguracion.BackColor = System.Drawing.SystemColors.Control;
+            this.menuConfiguracion.BackColor = System.Drawing.Color.White;
             this.menuConfiguracion.IconChar = FontAwesome.Sharp.IconChar.ScrewdriverWrench;
             this.menuConfiguracion.IconColor = System.Drawing.Color.Black;
             this.menuConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -148,7 +161,7 @@
             // menuAcercade
             // 
             this.menuAcercade.AutoSize = false;
-            this.menuAcercade.BackColor = System.Drawing.SystemColors.Control;
+            this.menuAcercade.BackColor = System.Drawing.Color.White;
             this.menuAcercade.IconChar = FontAwesome.Sharp.IconChar.Info;
             this.menuAcercade.IconColor = System.Drawing.Color.Black;
             this.menuAcercade.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -217,17 +230,6 @@
             this.contenedor.Size = new System.Drawing.Size(1019, 492);
             this.contenedor.TabIndex = 3;
             // 
-            // subMenuVer
-            // 
-            this.subMenuVer.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.subMenuVer.IconColor = System.Drawing.Color.Black;
-            this.subMenuVer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.subMenuVer.Name = "subMenuVer";
-            this.subMenuVer.Size = new System.Drawing.Size(184, 26);
-            this.subMenuVer.Text = "Ver";
-            this.subMenuVer.Visible = false;
-            this.subMenuVer.Click += new System.EventHandler(this.subMenuVer_Click);
-            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,8 +241,11 @@
             this.Controls.Add(this.lblSistema);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.menuTitulo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
+            this.MaximizeBox = false;
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);

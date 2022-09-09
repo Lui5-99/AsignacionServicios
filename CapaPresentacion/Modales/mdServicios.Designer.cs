@@ -30,17 +30,18 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mdServicios));
             this.btBusqueda = new FontAwesome.Sharp.IconButton();
             this.btLimpiarbuscador = new FontAwesome.Sharp.IconButton();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.cbBusqueda = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.dtServicio = new System.Windows.Forms.DateTimePicker();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtServicio = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,16 +155,6 @@
             this.dgvDatos.TabIndex = 97;
             this.dgvDatos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellDoubleClick);
             // 
-            // dtServicio
-            // 
-            this.dtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtServicio.Location = new System.Drawing.Point(260, 60);
-            this.dtServicio.Name = "dtServicio";
-            this.dtServicio.Size = new System.Drawing.Size(174, 20);
-            this.dtServicio.TabIndex = 98;
-            this.dtServicio.ValueChanged += new System.EventHandler(this.dtServicio_ValueChanged);
-            // 
             // Id
             // 
             this.Id.HeaderText = "IdServicio";
@@ -196,6 +187,16 @@
             this.Descripcion.ReadOnly = true;
             this.Descripcion.Width = 250;
             // 
+            // dtServicio
+            // 
+            this.dtServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtServicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtServicio.Location = new System.Drawing.Point(260, 60);
+            this.dtServicio.Name = "dtServicio";
+            this.dtServicio.Size = new System.Drawing.Size(174, 20);
+            this.dtServicio.TabIndex = 98;
+            this.dtServicio.ValueChanged += new System.EventHandler(this.dtServicio_ValueChanged);
+            // 
             // mdServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -209,6 +210,8 @@
             this.Controls.Add(this.cbBusqueda);
             this.Controls.Add(this.label10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "mdServicios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Servicios";

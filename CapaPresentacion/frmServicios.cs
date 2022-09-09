@@ -17,6 +17,9 @@ namespace AsignacionServicios
     public partial class frmServicios : Form
     {
         private Usuario _Usuario;
+        private Color Amarillo = Color.FromArgb(220, 247, 154);
+        private Color Rojo = Color.FromArgb(247, 158, 139);
+        private Color Verde = Color.FromArgb(143, 249, 131);
         public frmServicios(Usuario oUsuario = null)
         {
             _Usuario = oUsuario;
@@ -48,12 +51,12 @@ namespace AsignacionServicios
                 if (result == DialogResult.OK)
                 {
                     txtCodigo.Text = modal._Cliente.Codigo.ToString();
-                    txtCodigo.BackColor = Color.Honeydew;
+                    txtCodigo.BackColor = Verde;
                     txtRazon.Text = modal._Cliente.RazonSocial.ToString();
                 }
                 else
                 {
-                    txtCodigo.BackColor = Color.MistyRose;
+                    txtCodigo.BackColor = Rojo;
                     txtRazon.Select();
                 }
             }
@@ -61,6 +64,7 @@ namespace AsignacionServicios
 
         private void btAdd_Click(object sender, EventArgs e)
         {
+            string desc = txtDescricpcion.Text;
             int IdCorrelativo = new CN_Servicio().obtenerCorrelativo();
             string CodigoServicio = string.Format("{0:000000}", IdCorrelativo);
             string mensaje = string.Empty;
@@ -111,12 +115,12 @@ namespace AsignacionServicios
                 Cliente oCliente = new CN_Cliente().Listar().Where(p => p.Codigo == txtCodigo.Text && p.Estado == true).FirstOrDefault();
                 if (oCliente != null)
                 {
-                    txtCodigo.BackColor = Color.Honeydew;
+                    txtCodigo.BackColor = Verde;
                     txtRazon.Text = oCliente.RazonSocial.ToString();
                 }
                 else
                 {
-                    txtCodigo.BackColor = Color.MistyRose;
+                    txtCodigo.BackColor = Rojo;
                     txtCodigo.Text = "";
                     txtRazon.Text = "";
                     txtCodigo.Select();

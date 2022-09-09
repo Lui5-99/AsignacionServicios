@@ -19,6 +19,9 @@ namespace AsignacionServicios
 {
     public partial class frmMovimiento : Form
     {
+        private Color Amarillo = Color.FromArgb(220, 247, 154);
+        private Color Rojo = Color.FromArgb(247, 158, 139);
+        private Color Verde = Color.FromArgb(143, 249, 131);
         public frmMovimiento()
         {
             InitializeComponent();
@@ -58,7 +61,7 @@ namespace AsignacionServicios
             Servicio oServ = new CN_Servicio().obtenerServicio(txtBusqueda.Text);
             if(oServ.IdServicio != 0)
             {
-                txtBusqueda.BackColor = Color.Honeydew;
+                txtBusqueda.BackColor = Verde;
                 txtCodigoServcio.Text = oServ.CodigoServicio;
                 txtFecha.Text = oServ.Fecha;
                 txtUsuario.Text = oServ.oUsuario.Nombre;
@@ -83,7 +86,7 @@ namespace AsignacionServicios
             }
             else
             {
-                txtBusqueda.BackColor = Color.MistyRose;
+                txtBusqueda.BackColor = Rojo;
                 txtCodigoServcio.Text = "";
                 txtFecha.Text = "";
                 txtUsuario.Text = "";
@@ -93,6 +96,7 @@ namespace AsignacionServicios
 
                 dgvDatos.Rows.Clear();
             }
+            agregarColor();
         }
 
         private void txtBusqueda_KeyDown(object sender, KeyEventArgs e)
@@ -102,7 +106,7 @@ namespace AsignacionServicios
                 Servicio oServ = new CN_Servicio().obtenerServicio(txtBusqueda.Text);
                 if (oServ.IdServicio != 0)
                 {
-                    txtBusqueda.BackColor = Color.Honeydew;
+                    txtBusqueda.BackColor = Verde;
                     txtCodigoServcio.Text = oServ.CodigoServicio;
                     txtFecha.Text = oServ.Fecha;
                     txtUsuario.Text = oServ.oUsuario.Nombre;
@@ -126,7 +130,7 @@ namespace AsignacionServicios
                 }
                 else
                 {
-                    txtBusqueda.BackColor = Color.MistyRose;
+                    txtBusqueda.BackColor = Rojo;
                     txtCodigoServcio.Text = "";
                     txtFecha.Text = "";
                     txtUsuario.Text = "";
@@ -137,6 +141,7 @@ namespace AsignacionServicios
 
                     dgvDatos.Rows.Clear();
                 }
+                agregarColor();
             }
          }
 
@@ -166,6 +171,18 @@ namespace AsignacionServicios
 
                 e.Graphics.DrawImage(Properties.Resources.check, new System.Drawing.Rectangle(x, y, w, h));
                 e.Handled = true;
+            }
+        }
+        private void agregarColor()
+        {
+            foreach(DataGridViewRow row in dgvDatos.Rows)
+            {
+                if (Convert.ToInt32(row.Cells["IdEstado"].Value.ToString()) == 1)
+                    row.Cells["Estado"].Style.BackColor = Amarillo;
+                if (Convert.ToInt32(row.Cells["IdEstado"].Value.ToString()) == 2)
+                    row.Cells["Estado"].Style.BackColor = Verde;
+                if (Convert.ToInt32(row.Cells["IdEstado"].Value.ToString()) == 3)
+                    row.Cells["Estado"].Style.BackColor = Rojo;
             }
         }
     }

@@ -66,7 +66,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(209, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(596, 470);
+            this.label1.Size = new System.Drawing.Size(606, 470);
             this.label1.TabIndex = 0;
             // 
             // label2
@@ -328,9 +328,10 @@
             // txtSolucion
             // 
             this.txtSolucion.Enabled = false;
-            this.txtSolucion.Location = new System.Drawing.Point(225, 381);
+            this.txtSolucion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSolucion.Location = new System.Drawing.Point(225, 364);
             this.txtSolucion.Name = "txtSolucion";
-            this.txtSolucion.Size = new System.Drawing.Size(574, 86);
+            this.txtSolucion.Size = new System.Drawing.Size(574, 103);
             this.txtSolucion.TabIndex = 32;
             this.txtSolucion.Text = "";
             // 

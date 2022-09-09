@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="AsignacionServicios.exe.manifest" size="10286">
+    <dependentAssembly dependencyType="install" codebase="AsignacionServicios.exe.manifest" size="10781">
       <assemblyIdentity name="AsignacionServicios.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UpKpUjbg2jAKlnZHLzaMI3hJ0QEW8Qy0JkSVtWDQ4oo=</dsig:DigestValue>
+        <dsig:DigestValue>KR1v5nDtyVoCRLKfisSL5JXbAXqqxPSGfb6xzjZ112M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
