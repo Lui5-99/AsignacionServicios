@@ -12,6 +12,7 @@ using CapaEntidad;
 using CapaNegocio;
 using AsignacionServicios;
 using AsignacionServicios.Utilidades;
+using System.IO;
 
 namespace CapaPresentacion
 {
@@ -33,6 +34,10 @@ namespace CapaPresentacion
                 u => u.User == txtUser.Text && u.Clave == cSeguridad.Encrypt(txtPwd.Text)).FirstOrDefault();
             if(oUsuario != null)
             {
+                if (ckbRecordar.Checked)
+                    GuardarTxt(txtUser.Text.Trim(), txtPwd.Text.Trim());
+                else
+                    GuardarTxtVacio();
                 Inicio oInicio = new Inicio(oUsuario);
                 oInicio.Show();
                 this.Hide();
@@ -47,14 +52,34 @@ namespace CapaPresentacion
 
         private void frm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            txtUser.Text = "";
-            txtPwd.Text = "";
+            if (File.Exists(@"creedenciales.txt"))
+            {
+                string[] lineas = cSeguridad.read();
+                ckbRecordar.Checked = lineas[0] == string.Empty ? false : true;
+                txtPwd.Text = lineas[1] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[1]);
+                txtUser.Text = lineas[0] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[0]);
+            }
+            else
+            {
+                ckbRecordar.Checked = false;
+            }
             txtUser.Select();
             this.Show();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            if (File.Exists(@"creedenciales.txt"))
+            {
+                string[] lineas = cSeguridad.read();
+                ckbRecordar.Checked = lineas[0] == string.Empty ? false : true;
+                txtPwd.Text = lineas[1] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[1]);
+                txtUser.Text = lineas[0] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[0]);
+            }
+            else
+            {
+                ckbRecordar.Checked = false;
+            }
             txtUser.Select();
         }
 
@@ -71,6 +96,25 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 btIngresar_Click(sender, e);
+            }
+        }
+
+        private void GuardarTxt(string usuario, string pass)
+        {
+            usuario = cSeguridad.Encrypt(usuario.Trim());
+            pass = cSeguridad.Encrypt(pass.Trim());
+            using (StreamWriter sw = File.CreateText(@"creedenciales.txt"))
+            {
+                sw.Write(usuario + ";");
+                sw.Write(pass + ";");
+            }
+        }
+        private void GuardarTxtVacio()
+        {
+            using (StreamWriter sw = File.CreateText(@"creedenciales.txt"))
+            {
+                sw.Write(";");
+                sw.Write(";");
             }
         }
     }

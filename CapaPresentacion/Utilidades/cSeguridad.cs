@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace AsignacionServicios.Utilidades
 {
@@ -83,6 +84,13 @@ namespace AsignacionServicios.Utilidades
             tdes.Clear();
             //se regresa en forma de cadena
             return UTF8Encoding.UTF8.GetString(resultArray);
+        }
+        public static string[] read()
+        {
+            string linea = File.ReadAllText(@"creedenciales.txt");
+            linea = linea.Remove(linea.Length - 1);
+            string[] lineas = linea.Split(';');
+            return lineas;
         }
     }
 }

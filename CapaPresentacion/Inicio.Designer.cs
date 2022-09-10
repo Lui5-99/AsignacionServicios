@@ -103,7 +103,7 @@
             this.subMenuAgregar.IconColor = System.Drawing.Color.Black;
             this.subMenuAgregar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.subMenuAgregar.Name = "subMenuAgregar";
-            this.subMenuAgregar.Size = new System.Drawing.Size(184, 26);
+            this.subMenuAgregar.Size = new System.Drawing.Size(115, 22);
             this.subMenuAgregar.Text = "Nuevo";
             this.subMenuAgregar.Click += new System.EventHandler(this.subMenuAgregar_Click);
             // 
@@ -113,7 +113,7 @@
             this.subMenuVer.IconColor = System.Drawing.Color.Black;
             this.subMenuVer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.subMenuVer.Name = "subMenuVer";
-            this.subMenuVer.Size = new System.Drawing.Size(184, 26);
+            this.subMenuVer.Size = new System.Drawing.Size(115, 22);
             this.subMenuVer.Text = "Ver";
             this.subMenuVer.Visible = false;
             this.subMenuVer.Click += new System.EventHandler(this.subMenuVer_Click);
@@ -124,7 +124,7 @@
             this.SubMenuDetalles.IconColor = System.Drawing.Color.Black;
             this.SubMenuDetalles.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.SubMenuDetalles.Name = "SubMenuDetalles";
-            this.SubMenuDetalles.Size = new System.Drawing.Size(184, 26);
+            this.SubMenuDetalles.Size = new System.Drawing.Size(115, 22);
             this.SubMenuDetalles.Text = "Detalles";
             this.SubMenuDetalles.Click += new System.EventHandler(this.SubMenuDetalles_Click);
             // 
@@ -176,7 +176,7 @@
             // lblSistema
             // 
             this.lblSistema.AutoSize = true;
-            this.lblSistema.BackColor = System.Drawing.Color.SlateGray;
+            this.lblSistema.BackColor = System.Drawing.Color.SteelBlue;
             this.lblSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSistema.ForeColor = System.Drawing.Color.White;
             this.lblSistema.Location = new System.Drawing.Point(12, 9);
@@ -188,7 +188,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.SlateGray;
+            this.label1.BackColor = System.Drawing.Color.SteelBlue;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(831, 22);
@@ -200,7 +200,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.BackColor = System.Drawing.Color.SlateGray;
+            this.lblUsuario.BackColor = System.Drawing.Color.SteelBlue;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
             this.lblUsuario.Location = new System.Drawing.Point(890, 22);
@@ -212,7 +212,7 @@
             // menuTitulo
             // 
             this.menuTitulo.AutoSize = false;
-            this.menuTitulo.BackColor = System.Drawing.Color.SlateGray;
+            this.menuTitulo.BackColor = System.Drawing.Color.SteelBlue;
             this.menuTitulo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuTitulo.Location = new System.Drawing.Point(0, 0);
             this.menuTitulo.Name = "menuTitulo";
@@ -241,6 +241,7 @@
             this.Controls.Add(this.lblSistema);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.menuTitulo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
             this.MaximizeBox = false;

@@ -263,6 +263,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmConfiguracion";
             this.Text = "frmConfiguracion";
             this.Load += new System.EventHandler(this.frmConfiguracion_Load);

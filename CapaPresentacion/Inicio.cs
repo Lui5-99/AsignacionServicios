@@ -72,7 +72,7 @@ namespace AsignacionServicios
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;
-            frm.BackColor = Color.SlateGray;
+            frm.BackColor = Color.SteelBlue;
             contenedor.Controls.Add(frm);
             frm.Show();
         }

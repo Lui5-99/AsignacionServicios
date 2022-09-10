@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.label1 = new System.Windows.Forms.Label();
             this.lblSistema = new System.Windows.Forms.Label();
             this.picDefault = new FontAwesome.Sharp.IconPictureBox();
@@ -37,12 +38,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btIngresar = new FontAwesome.Sharp.IconButton();
             this.btCancelar = new FontAwesome.Sharp.IconButton();
+            this.ckbRecordar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDefault)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.SlateGray;
+            this.label1.BackColor = System.Drawing.Color.SteelBlue;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
@@ -51,7 +53,7 @@
             // 
             // lblSistema
             // 
-            this.lblSistema.BackColor = System.Drawing.Color.SlateGray;
+            this.lblSistema.BackColor = System.Drawing.Color.SteelBlue;
             this.lblSistema.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSistema.ForeColor = System.Drawing.Color.White;
             this.lblSistema.Location = new System.Drawing.Point(12, 231);
@@ -63,7 +65,7 @@
             // 
             // picDefault
             // 
-            this.picDefault.BackColor = System.Drawing.Color.SlateGray;
+            this.picDefault.BackColor = System.Drawing.Color.SteelBlue;
             this.picDefault.IconChar = FontAwesome.Sharp.IconChar.Store;
             this.picDefault.IconColor = System.Drawing.Color.White;
             this.picDefault.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -84,7 +86,7 @@
             // 
             // txtPwd
             // 
-            this.txtPwd.Location = new System.Drawing.Point(382, 148);
+            this.txtPwd.Location = new System.Drawing.Point(382, 125);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(267, 20);
             this.txtPwd.TabIndex = 6;
@@ -103,7 +105,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(382, 129);
+            this.label4.Location = new System.Drawing.Point(382, 106);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 8;
@@ -111,7 +113,7 @@
             // 
             // btIngresar
             // 
-            this.btIngresar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btIngresar.BackColor = System.Drawing.Color.SteelBlue;
             this.btIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btIngresar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -151,11 +153,22 @@
             this.btCancelar.UseVisualStyleBackColor = false;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
+            // ckbRecordar
+            // 
+            this.ckbRecordar.AutoSize = true;
+            this.ckbRecordar.Location = new System.Drawing.Point(382, 151);
+            this.ckbRecordar.Name = "ckbRecordar";
+            this.ckbRecordar.Size = new System.Drawing.Size(73, 17);
+            this.ckbRecordar.TabIndex = 11;
+            this.ckbRecordar.Text = "Recordar ";
+            this.ckbRecordar.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 271);
+            this.Controls.Add(this.ckbRecordar);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btIngresar);
             this.Controls.Add(this.label4);
@@ -166,6 +179,7 @@
             this.Controls.Add(this.lblSistema);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
@@ -187,5 +201,6 @@
         private System.Windows.Forms.Label label4;
         private FontAwesome.Sharp.IconButton btIngresar;
         private FontAwesome.Sharp.IconButton btCancelar;
+        private System.Windows.Forms.CheckBox ckbRecordar;
     }
 }
