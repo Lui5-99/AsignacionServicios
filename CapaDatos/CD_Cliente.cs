@@ -102,7 +102,7 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT CCODIGOCLIENTE, CRAZONSOCIAL ");
-                    query.AppendLine("FROM admClientes ");
+                    query.AppendLine("FROM admClientes WHERE CTIPOCLIENTE <> 3 ");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();
