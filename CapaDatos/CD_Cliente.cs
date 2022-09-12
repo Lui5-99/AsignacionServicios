@@ -19,7 +19,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT IdCliente, Codigo, RazonSocial, Correo, Telefono, Estado FROM CLIENTE");
+                    query.AppendLine("SELECT IdCliente, Codigo, RazonSocial, Correo, Telefono, Estado FROM CLIENTE ORDER BY Codigo");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();
@@ -102,7 +102,7 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT CCODIGOCLIENTE, CRAZONSOCIAL ");
-                    query.AppendLine("FROM admClientes WHERE CTIPOCLIENTE <> 3 ");
+                    query.AppendLine("FROM admClientes WHERE CTIPOCLIENTE <> 3 order by CCODIGOCLIENTE");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();

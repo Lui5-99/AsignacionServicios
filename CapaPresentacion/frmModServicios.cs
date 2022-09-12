@@ -169,7 +169,7 @@ namespace AsignacionServicios
         {
             dtServicio.Value = DateTime.Now;
             cbEstado.SelectedIndex = 0;
-            cbUsuario.SelectedIndex = 0;
+            //cbUsuario.SelectedIndex = 0;
             limpiar();
         }
 

@@ -85,8 +85,8 @@ namespace AsignacionServicios
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (!(txtUsuario.Text == string.Empty || txtEncargado.Text == string.Empty || txtCliente.Text == string.Empty))
-            {
+            /*if (!(txtUsuario.Text == string.Empty || txtEncargado.Text == string.Empty || txtCliente.Text == string.Empty))
+            {*/
                 dgvDatos.Rows.Clear();
                 string fecha = dtFecha.Value.ToString("yyyyMMdd");
                 Servicio oServ = new Servicio()
@@ -120,16 +120,16 @@ namespace AsignacionServicios
                        item.oEstado.Descripcion,
                        item.Fecha,
                        item.Descripcion,
-                       item.Solucion,
+                       item.Bitacora,
                        item.HojaServicio == true ? "Si" : "No",
                        item.Factura == true ? "Si" : "No"
                     });
                 }
-            }
+           /* }
             else
             {
                 MessageBox.Show("Algún campo está vacío", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            }*/
         }
 
         private void frmReporte_Load(object sender, EventArgs e)
@@ -206,7 +206,7 @@ namespace AsignacionServicios
                    item.oEstado.Descripcion,
                    item.Fecha,
                    item.Descripcion,
-                   item.Solucion,
+                   item.Bitacora,
                    item.HojaServicio == true ? "Si" : "No",
                    item.Factura == true ? "Si" : "No"
                 });
@@ -266,6 +266,42 @@ namespace AsignacionServicios
                     }
                 }
             }
+        }
+
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbBusqueda.SelectedItem).valor.ToString();
+            if (dgvDatos.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvDatos.Rows)
+                {
+                    if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtBusqueda.Text.ToString().ToUpper()))
+                        row.Visible = true;
+                    else
+                        row.Visible = false;
+                }
+            }
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbBusqueda.SelectedItem).valor.ToString();
+            if (dgvDatos.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgvDatos.Rows)
+                {
+                    if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtBusqueda.Text.ToString().ToUpper()))
+                        row.Visible = true;
+                    else
+                        row.Visible = false;
+                }
+            }
+        }
+
+        private void btnlimpiarbuscador_Click(object sender, EventArgs e)
+        {
+            txtBusqueda.Text = "";
+            cbBusqueda.SelectedIndex = 0;
         }
     }
 }

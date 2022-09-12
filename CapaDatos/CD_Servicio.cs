@@ -167,22 +167,22 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT S.IdServicio, S.CodigoServicio, S.IdUsuario, U.NombreCompleto Supervisor,  ");
-                    query.AppendLine("S.IdUAsignado, U1.NombreCompleto Usuario, S.RazonSocial, ");
+                    query.AppendLine("U1.IdUsuario IdUAsignado, U1.NombreCompleto Usuario, S.RazonSocial, ");
                     query.AppendLine("M.IdEstadoServicio, ES.Descripcion Estado, M.FechaRegistro,  ");
                     query.AppendLine("S.Descripcion, S.Solucion, S.HojaServicio, S.Factura,  ");
                     query.AppendLine("M.Bitacora ");
                     query.AppendLine("FROM SERVICIO S ");
-                    query.AppendLine("INNER JOIN USUARIO U ON S.IdUsuario = U.IdUsuario ");
-                    query.AppendLine("INNER JOIN USUARIO U1 ON S.IdUAsignado = U1.IdUsuario ");
                     query.AppendLine("INNER JOIN MOVIMIENTO M ON S.IdServicio = M.IdServicio ");
-                    query.AppendLine("INNER JOIN ESTADOSERVICIO ES ON S.IdEstadoServicio = ES.IdEstadoServicio ");
+                    query.AppendLine("INNER JOIN USUARIO U ON S.IdUsuario = U.IdUsuario ");
+                    query.AppendLine("INNER JOIN USUARIO U1 ON M.IdUsuario = U1.IdUsuario ");
+                    query.AppendLine("INNER JOIN ESTADOSERVICIO ES ON M.IdEstadoServicio = ES.IdEstadoServicio ");
                     query.AppendLine("WHERE s.FechaRegistro Between CAST('" + _fecha + "' AS datetime) and ");
                     query.AppendLine("CAST('" + _fecha2 + "' AS datetime) ");
                     if(tipo == 1)
                     {
-                        query.AppendLine("AND U.IdUsuario = @IdUsuario ");
-                        query.AppendLine("AND U1.IdUsuario = @IdUAsignado ");
-                        query.AppendLine("AND s.RazonSocial = @Cliente ");
+                        query.AppendLine(oServ.oUsuario.IdUsuario == 0 ? "" : "AND U.IdUsuario = @IdUsuario ");
+                        query.AppendLine(oServ.oAsignado.IdUsuario == 0 ? "" : "AND U1.IdUsuario = @IdUAsignado ");
+                        query.AppendLine(oServ.oCliente.RazonSocial == string.Empty ? "" : "AND s.RazonSocial = @Cliente ");
                     }
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
