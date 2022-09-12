@@ -109,20 +109,20 @@ namespace AsignacionServicios
                 {
                     dgvDatos.Rows.Add(new object[]
                     {
-                   item.IdServicio,
-                   item.CodigoServicio,
-                   item.oUsuario.IdUsuario,
-                   item.oUsuario.Nombre,
-                   item.oAsignado.IdUsuario,
-                   item.oAsignado.Nombre,
-                   item.oCliente.RazonSocial,
-                   item.oEstado.IdEstadoServicio,
-                   item.oEstado.Descripcion,
-                   item.Fecha,
-                   item.Descripcion,
-                   item.Solucion,
-                   item.HojaServicio,
-                   item.Factura
+                       item.IdServicio,
+                       item.CodigoServicio,
+                       item.oUsuario.IdUsuario,
+                       item.oUsuario.Nombre,
+                       item.oAsignado.IdUsuario,
+                       item.oAsignado.Nombre,
+                       item.oCliente.RazonSocial,
+                       item.oEstado.IdEstadoServicio,
+                       item.oEstado.Descripcion,
+                       item.Fecha,
+                       item.Descripcion,
+                       item.Solucion,
+                       item.HojaServicio == true ? "Si" : "No",
+                       item.Factura == true ? "Si" : "No"
                     });
                 }
             }
@@ -207,8 +207,8 @@ namespace AsignacionServicios
                    item.Fecha,
                    item.Descripcion,
                    item.Solucion,
-                   item.HojaServicio,
-                   item.Factura
+                   item.HojaServicio == true ? "Si" : "No",
+                   item.Factura == true ? "Si" : "No"
                 });
             }
         }
@@ -255,7 +255,7 @@ namespace AsignacionServicios
                     try
                     {
                         XLWorkbook wb = new XLWorkbook();
-                        var sheet = wb.Worksheets.Add(dt, "Compras");
+                        var sheet = wb.Worksheets.Add(dt, "Bitacora");
                         sheet.ColumnsUsed().AdjustToContents();
                         wb.SaveAs(saveFile.FileName);
                         MessageBox.Show("Excel generado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
