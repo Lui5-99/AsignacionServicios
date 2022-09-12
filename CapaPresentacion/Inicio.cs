@@ -39,22 +39,29 @@ namespace AsignacionServicios
                     );
                 if (!encontrado)
                     iconMenu.Visible = false;
-                switch (IdRolActual)
-                {
-                    case 1: subMenuVer.Visible = true;
-                        break;
-                    case 2: subMenuAgregar.Visible = false;
-                        break;
-                    case 3: subMenuAgregar.Text = "Nuevo";
-                        break;
-                    case 4: subMenuAgregar.Text = "Ver";
-                        break;
-                    case 5: subMenuAgregar.Visible = false;
-                        break;
-                    case 6: subMenuAgregar.Visible = false;
-                        break;
-                }
             }
+            switch (IdRolActual)
+            {
+                case 1:
+                    subMenuVer.Visible = true;
+                    break;
+                case 2:
+                    subMenuAgregar.Visible = false;
+                    break;
+                case 3:
+                    subMenuAgregar.Text = "Nuevo";
+                    break;
+                case 4:
+                    subMenuAgregar.Text = "Ver";
+                    break;
+                case 5:
+                    subMenuAgregar.Visible = false;
+                    break;
+                case 6:
+                    subMenuAgregar.Visible = false;
+                    break;
+            }
+            menuReportes.Visible = true;
         }
         private void AbrirFormulario(IconMenuItem menu, Form frm)
         {
@@ -123,6 +130,11 @@ namespace AsignacionServicios
         private void subMenuVer_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmModServicios(usuarioActual));
+        }
+
+        private void menuReportes_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario((IconMenuItem)sender, new frmReporte());
         }
     }
 }

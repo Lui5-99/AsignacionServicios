@@ -97,6 +97,7 @@ namespace AsignacionServicios
                     lblId.Text = dgvDatos.Rows[indice].Cells["IdServicio"].Value.ToString();
                     txtDescricpcion.Text = dgvDatos.Rows[indice].Cells["Descripcion"].Value.ToString();
                     txtSolucion.Text = dgvDatos.Rows[indice].Cells["Solucion"].Value.ToString();
+                    lblCodigo.Text = dgvDatos.Rows[indice].Cells["CodigoServicio"].Value.ToString();
                     foreach (OpcionCombo oc in cbUsuario.Items)
                     {
                         if (Convert.ToInt32(oc.valor) == Convert.ToInt32(dgvDatos.Rows[indice].Cells["IdUsuario"].Value.ToString()))
@@ -151,31 +152,7 @@ namespace AsignacionServicios
 
         private void dtServicio_ValueChanged(object sender, EventArgs e)
         {
-            dgvDatos.Rows.Clear();
-            string fecha = dtServicio.Value.ToString("yyyyMMdd");
-            List<Servicio> ls = new CN_Servicio().Listar(fecha);
-            foreach (Servicio item in ls)
-            {
-                dgvDatos.Rows.Add(new object[]
-                {
-                   "",
-                   item.IdServicio,
-                   item.CodigoServicio,
-                   item.oCliente.RazonSocial,
-                   item.oUsuario.IdUsuario,
-                   item.oUsuario.Nombre,
-                   item.oAsignado.IdUsuario,
-                   item.oAsignado.Nombre,
-                   item.oEstado.IdEstadoServicio,
-                   item.oEstado.Descripcion,
-                   item.Fecha,
-                   item.Descripcion,
-                   item.Solucion,
-                   item.HojaServicio,
-                   item.Factura
-                });
-            }
-            limpiar();
+            refresh();
         }
         private void limpiar()
         {
@@ -185,6 +162,7 @@ namespace AsignacionServicios
             txtDescricpcion.Text = "";
             lblId.Text = "0";
             lblIndice.Text = "-1";
+            lblCodigo.Text = "0";
             //
         }
         private void btLimpiar_Click(object sender, EventArgs e)
@@ -219,7 +197,8 @@ namespace AsignacionServicios
             DataTable dt = new DataTable();
             dt.Columns.Add("IdUsuario");
             dt.Columns.Add("IdEstadoServicio");
-            dt.Rows.Add(oServicio.oAsignado.IdUsuario, oServicio.oEstado.IdEstadoServicio);
+            dt.Columns.Add("Bitacora");
+            dt.Rows.Add(oServicio.oAsignado.IdUsuario, oServicio.oEstado.IdEstadoServicio, txtSolucion.Text);
             if(oServicio.IdServicio != 0)
             {
                 bool respuesta = new CN_Servicio().Editar(oServicio, out Mensaje);
@@ -233,12 +212,41 @@ namespace AsignacionServicios
                     row.Cells["Estado"].Value = ((OpcionCombo)cbEstado.SelectedItem).texto.ToString();
                     row.Cells["Fecha"].Value = DateTime.Now;
                     row.Cells["Solucion"].Value = txtSolucion.Text;
-                    MessageBox.Show("Servicio con el ID " + lblId.Text.ToString() + " actualizado", "Mensaje", MessageBoxButtons.OK);
-                    limpiar();
+                    MessageBox.Show("Servicio con el código " + lblCodigo.Text.ToString() + " actualizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    refresh();
                 }
                 else
                     MessageBox.Show(Mensaje, "Mensaje", MessageBoxButtons.OK);
             }
+        }
+        private void refresh()
+        {
+            dgvDatos.Rows.Clear();
+            string fecha = dtServicio.Value.ToString("yyyyMMdd");
+            List<Servicio> ls = new CN_Servicio().Listar(fecha);
+            foreach (Servicio item in ls)
+            {
+                dgvDatos.Rows.Add(new object[]
+                {
+                   "",
+                   item.IdServicio,
+                   item.CodigoServicio,
+                   item.oCliente.RazonSocial,
+                   item.oUsuario.IdUsuario,
+                   item.oUsuario.Nombre,
+                   item.oAsignado.IdUsuario,
+                   item.oAsignado.Nombre,
+                   item.oEstado.IdEstadoServicio,
+                   item.oEstado.Descripcion,
+                   item.Fecha,
+                   item.Descripcion,
+                   item.Solucion,
+                   item.HojaServicio,
+                   item.Factura,
+                   item.Bitacora
+                });
+            }
+            limpiar();
         }
 
     }

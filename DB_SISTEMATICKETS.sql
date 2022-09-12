@@ -65,8 +65,8 @@ CREATE TABLE SERVICIO(
 	Factura bit,
 	HojaServicio bit,
 	IdEstadoServicio int references ESTADOSERVICIO(IdEstadoServicio),
-	Descripcion varchar(250),
-	Solucion varchar(250),
+	Descripcion varchar(500),
+	Solucion varchar(500),
 	FechaRegistro datetime default getdate()
 )
 
@@ -316,8 +316,8 @@ create PROC sp_ModificarServicio(
 @IdServicio int,
 @IdUAsignado int,
 @IdEstadoServicio int,
-@Descripcion varchar(50),
-@Solucion varchar(50),
+@Descripcion varchar(500),
+@Solucion varchar(500),
 @Resultado bit output,
 @Mensaje varchar(500) output
 )as
@@ -352,7 +352,7 @@ end
 
 GO
 
-/**/
+/* --------------- Inserciones preedefinidas --------------- */
 insert into ESTADOSERVICIO(descripcion) values('Pendiente'),
 											  ('Finalizado'),
                                               ('No Completado')
@@ -365,10 +365,10 @@ insert into Rol(Descripcion) values ('ADMINISTRADOR'),
 									('COBRANZA')
 
 insert into USUARIO(UserName, NombreCompleto, Correo, Clave, IdRol, Estado) 
-values ('Admin', 'Adminstrador', '@gmail.com', 'w1whFM059LQ=', 1, 1),
-	   ('Super', 'Supervisor', '@gmail.com', '2IyLhUv5ltc=', 2, 1),
-	   ('Ventas', 'Ventas', '@gmail.com', 'sLQmoonjf+w=', 3, 1),
-       ('Soporte', 'Soporte', '@gmail.com', 'vanymv6+tZg=', 4, 1)
+values ('Admin', 'Adminstrador', '@gmail.com', 'w1whFM059LQ=', 1, 1), /* 123456 */
+	   ('Super', 'Supervisor', '@gmail.com', '2IyLhUv5ltc=', 2, 1), /* 789 */
+	   ('Ventas', 'Ventas', '@gmail.com', 'sLQmoonjf+w=', 3, 1), /* 123 */
+       ('Soporte', 'Soporte', '@gmail.com', 'vanymv6+tZg=', 4, 1) /* 789456 */
 
 insert into Permiso(IdRol, NombreMenu, Estado) 
 	    /* ADMINISTRADOR */

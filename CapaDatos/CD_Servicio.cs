@@ -98,7 +98,8 @@ namespace CapaDatos
                     query.AppendLine("SELECT S.IdServicio, S.CodigoServicio, S.IdUsuario, U.NombreCompleto Supervisor,  ");
                     query.AppendLine("S.IdUAsignado, U1.NombreCompleto Usuario, S.RazonSocial, ");
                     query.AppendLine("S.IdEstadoServicio, ES.Descripcion Estado, S.FechaRegistro,  ");
-                    query.AppendLine("S.Descripcion, S.Solucion, S.HojaServicio, S.Factura ");
+                    query.AppendLine("S.Descripcion, S.Solucion, S.HojaServicio, S.Factura, ");
+                    query.AppendLine("cast((SELECT TOP 1 BITACORA FROM MOVIMIENTO WHERE IdServicio = S.IdServicio Order By FechaRegistro desc) as varchar(500)) Bitacora ");
                     query.AppendLine("FROM SERVICIO S ");
                     query.AppendLine("INNER JOIN USUARIO U ON S.IdUsuario = U.IdUsuario ");
                     query.AppendLine("INNER JOIN USUARIO U1 ON S.IdUAsignado = U1.IdUsuario ");
@@ -141,6 +142,7 @@ namespace CapaDatos
                                 Solucion = reader["Solucion"].ToString(),
                                 HojaServicio = Convert.ToBoolean(reader["HojaServicio"].ToString()),
                                 Factura = Convert.ToBoolean(reader["Factura"].ToString()),
+                                Bitacora = reader["Bitacora"].ToString()
                             });
                         }
                     }
@@ -153,6 +155,91 @@ namespace CapaDatos
             }
             return ls;
         }
+
+        public List<Servicio> ListarBitacora(string fecha, int tipo, Servicio oServ)
+        {
+            string _fecha = fecha + " 00:00:00";
+            string _fecha2 = fecha + " 23:59:59";
+            List<Servicio> ls = new List<Servicio>();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("SELECT S.IdServicio, S.CodigoServicio, S.IdUsuario, U.NombreCompleto Supervisor,  ");
+                    query.AppendLine("S.IdUAsignado, U1.NombreCompleto Usuario, S.RazonSocial, ");
+                    query.AppendLine("M.IdEstadoServicio, ES.Descripcion Estado, M.FechaRegistro,  ");
+                    query.AppendLine("S.Descripcion, S.Solucion, S.HojaServicio, S.Factura,  ");
+                    query.AppendLine("M.Bitacora ");
+                    query.AppendLine("FROM SERVICIO S ");
+                    query.AppendLine("INNER JOIN USUARIO U ON S.IdUsuario = U.IdUsuario ");
+                    query.AppendLine("INNER JOIN USUARIO U1 ON S.IdUAsignado = U1.IdUsuario ");
+                    query.AppendLine("INNER JOIN MOVIMIENTO M ON S.IdServicio = M.IdServicio ");
+                    query.AppendLine("INNER JOIN ESTADOSERVICIO ES ON S.IdEstadoServicio = ES.IdEstadoServicio ");
+                    query.AppendLine("WHERE s.FechaRegistro Between CAST('" + _fecha + "' AS datetime) and ");
+                    query.AppendLine("CAST('" + _fecha2 + "' AS datetime) ");
+                    if(tipo == 1)
+                    {
+                        query.AppendLine("AND U.IdUsuario = @IdUsuario ");
+                        query.AppendLine("AND U1.IdUsuario = @IdUAsignado ");
+                        query.AppendLine("AND s.RazonSocial = @Cliente ");
+                    }
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
+                    if(tipo == 1)
+                    {
+                        cmd.Parameters.AddWithValue("IdUsuario", oServ.oUsuario.IdUsuario);
+                        cmd.Parameters.AddWithValue("IdUAsignado", oServ.oAsignado.IdUsuario);
+                        cmd.Parameters.AddWithValue("Cliente", oServ.oCliente.RazonSocial);
+                    }
+                    cmd.CommandType = CommandType.Text;
+                    oConexion.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ls.Add(new Servicio()
+                            {
+                                IdServicio = Convert.ToInt32(reader["IdServicio"].ToString()),
+                                CodigoServicio = reader["CodigoServicio"].ToString(),
+                                oUsuario = new Usuario()
+                                {
+                                    IdUsuario = Convert.ToInt32(reader["IdUsuario"].ToString()),
+                                    Nombre = reader["Supervisor"].ToString(),
+                                },
+                                oAsignado = new Usuario()
+                                {
+                                    IdUsuario = Convert.ToInt32(reader["IdUsuario"].ToString()),
+                                    Nombre = reader["Usuario"].ToString(),
+                                },
+                                oCliente = new Cliente()
+                                {
+                                    RazonSocial = reader["RazonSocial"].ToString(),
+                                },
+                                oEstado = new EstadoServicio()
+                                {
+                                    IdEstadoServicio = Convert.ToInt32(reader["IdEstadoServicio"].ToString()),
+                                    Descripcion = reader["Estado"].ToString(),
+                                },
+                                Fecha = reader["FechaRegistro"].ToString(),
+                                Descripcion = reader["Descripcion"].ToString(),
+                                Solucion = reader["Solucion"].ToString(),
+                                HojaServicio = Convert.ToBoolean(reader["HojaServicio"].ToString()),
+                                Factura = Convert.ToBoolean(reader["Factura"].ToString()),
+                                Bitacora = reader["Bitacora"].ToString()
+                            });
+                        }
+                    }
+                    oConexion.Close();
+                }
+                catch (Exception ex)
+                {
+                    ls = new List<Servicio>();
+                }
+            }
+            return ls;
+        }
+
         public bool Editar(Servicio oServicio, out string Mensaje)
         {
             //@IdServicio int,

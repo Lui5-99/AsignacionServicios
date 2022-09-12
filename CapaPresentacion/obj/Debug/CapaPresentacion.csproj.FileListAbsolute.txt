@@ -73,3 +73,5 @@ C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\bin\Debug\Asi
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\bin\Debug\AsignacionServicios.application
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.exe.manifest
 C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.application
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.frmReporte.resources
+C:\Users\Usuario\source\repos\AsignacionServicios\CapaPresentacion\obj\Debug\AsignacionServicios.Modales.mdUsuario.resources

@@ -20,5 +20,6 @@ namespace CapaEntidad
         public string Solucion { get; set; }
         public List<Movimiento> oDetalleServicio { get; set; }
         public string Fecha { get; set; }
+        public string Bitacora { get; set; }
     }
 }

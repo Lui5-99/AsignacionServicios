@@ -126,6 +126,12 @@
     <Compile Include="frmMovimiento.Designer.cs">
       <DependentUpon>frmMovimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporte.Designer.cs">
+      <DependentUpon>frmReporte.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmServicios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,12 @@
     <Compile Include="Modales\mdServicios.Designer.cs">
       <DependentUpon>mdServicios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\mdUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\mdUsuario.Designer.cs">
+      <DependentUpon>mdUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\cSeguridad.cs" />
@@ -183,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMovimiento.resx">
       <DependentUpon>frmMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporte.resx">
+      <DependentUpon>frmReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServicios.resx">
       <DependentUpon>frmServicios.cs</DependentUpon>
@@ -204,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\mdServicios.resx">
       <DependentUpon>mdServicios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\mdUsuario.resx">
+      <DependentUpon>mdUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

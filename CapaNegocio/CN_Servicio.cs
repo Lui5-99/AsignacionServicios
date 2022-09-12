@@ -34,6 +34,10 @@ namespace CapaNegocio
         {
             return oCNServicio.Listar(fecha);
         }
+        public List<Servicio> ListarBitacora(string fecha, int tipo, Servicio oServ)
+        {
+            return oCNServicio.ListarBitacora(fecha, tipo, oServ);
+        }
         public bool Editar(Servicio oServicio, out string Mensaje)
         {
             Mensaje = string.Empty;

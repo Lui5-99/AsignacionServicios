@@ -36,6 +36,7 @@
             this.subMenuVer = new FontAwesome.Sharp.IconMenuItem();
             this.SubMenuDetalles = new FontAwesome.Sharp.IconMenuItem();
             this.menuClientes = new FontAwesome.Sharp.IconMenuItem();
+            this.menuReportes = new FontAwesome.Sharp.IconMenuItem();
             this.menuConfiguracion = new FontAwesome.Sharp.IconMenuItem();
             this.menuAcercade = new FontAwesome.Sharp.IconMenuItem();
             this.lblSistema = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.menuUsuario,
             this.menuServicio,
             this.menuClientes,
+            this.menuReportes,
             this.menuConfiguracion,
             this.menuAcercade});
             this.menu.Location = new System.Drawing.Point(0, 48);
@@ -142,6 +144,21 @@
             this.menuClientes.Text = "Clientes";
             this.menuClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuClientes.Click += new System.EventHandler(this.menuClientes_Click);
+            // 
+            // menuReportes
+            // 
+            this.menuReportes.AutoSize = false;
+            this.menuReportes.BackColor = System.Drawing.Color.White;
+            this.menuReportes.IconChar = FontAwesome.Sharp.IconChar.BarChart;
+            this.menuReportes.IconColor = System.Drawing.Color.Black;
+            this.menuReportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menuReportes.IconSize = 50;
+            this.menuReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuReportes.Name = "menuReportes";
+            this.menuReportes.Size = new System.Drawing.Size(122, 69);
+            this.menuReportes.Text = "Reportes";
+            this.menuReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuReportes.Click += new System.EventHandler(this.menuReportes_Click);
             // 
             // menuConfiguracion
             // 
@@ -272,5 +289,6 @@
         private FontAwesome.Sharp.IconMenuItem subMenuAgregar;
         private FontAwesome.Sharp.IconMenuItem SubMenuDetalles;
         private FontAwesome.Sharp.IconMenuItem subMenuVer;
+        private FontAwesome.Sharp.IconMenuItem menuReportes;
     }
 }

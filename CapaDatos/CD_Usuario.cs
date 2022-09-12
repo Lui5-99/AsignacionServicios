@@ -23,7 +23,8 @@ namespace CapaDatos
                     query.AppendLine("R.IdRol, R.Descripcion ");
                     query.AppendLine("FROM USUARIO U ");
                     query.AppendLine("INNER JOIN ROL R ON R.IdRol = U.IdRol ");
-                    query.AppendLine(tipo == 1 ? "WHERE R.DESCRIPCION = 'SOPORTE' ": "");
+                    query.AppendLine(tipo == 1 ? "where u.IdRol IN (4,5) " : "");
+                    query.AppendLine(tipo == 2 ? "where u.IdRol IN (1,3) " : "");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();
