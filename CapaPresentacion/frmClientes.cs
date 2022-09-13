@@ -26,6 +26,8 @@ namespace AsignacionServicios
         }
         private void load()
         {
+            cbBusqueda.Items.Clear();
+            cbEstado.Items.Clear();
             cbEstado.Items.Add(new OpcionCombo()
             {
                 valor = 1,
@@ -53,6 +55,8 @@ namespace AsignacionServicios
             cbBusqueda.DisplayMember = "texto";
             cbBusqueda.ValueMember = "valor";
             cbBusqueda.SelectedIndex = 0;
+
+            dgvDatos.Rows.Clear();
 
             List<Cliente> lsC = new CN_Cliente().Listar();
             foreach (Cliente item in lsC)
@@ -260,6 +264,7 @@ namespace AsignacionServicios
             string mensaje = string.Empty;
             string error = string.Empty;
             int result = 0;
+            int countClientes = new CN_Cliente().CountClientesComercial();
             List<Cliente> ls = new CN_Cliente().ListarComercial();
             foreach(Cliente item in ls)
             {
@@ -267,8 +272,8 @@ namespace AsignacionServicios
                 {
                     Codigo = item.Codigo,
                     RazonSocial = item.RazonSocial,
-                    Correo = "",
-                    Telefono = "",
+                    Correo = item.Correo,
+                    Telefono = item.Telefono,
                     Estado = true,
                 };
                 result = new CN_Cliente().Registrar(_auxCliente, out mensaje);
@@ -284,9 +289,19 @@ namespace AsignacionServicios
             }
             else
             {
-                var dialog = MessageBox.Show("¿Copiar el error?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (dialog == DialogResult.Yes)
-                    Clipboard.SetText(error);
+                if(errores == countClientes)
+                {
+                    var dialog = MessageBox.Show("¿Copiar la advertencia?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (dialog == DialogResult.Yes)
+                        Clipboard.SetText(error);
+                }
+                else
+                {
+                    var dialog = MessageBox.Show("Algunos clientes fueron sincronizados con exito\n " +
+                        "¿Copiar al portapapeles los que no se sincronizaron?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (dialog == DialogResult.Yes)
+                        Clipboard.SetText(error);
+                }
             }
             load();
         }

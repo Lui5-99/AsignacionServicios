@@ -13,6 +13,7 @@ namespace CapaDatos
     {
         public List<Cliente> Listar()
         {
+            string mensaje = string.Empty;
             List<Cliente> ls = new List<Cliente>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -20,8 +21,10 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT IdCliente, Codigo, RazonSocial, Correo, Telefono, Estado FROM CLIENTE ORDER BY Codigo");
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
-                    cmd.CommandType = CommandType.Text;
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oConexion)
+                    {
+                        CommandType = CommandType.Text,
+                    };
                     oConexion.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -46,7 +49,8 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-
+                    mensaje = ex.Message;
+                    ls = new List<Cliente>();
                 }
             }
             return ls;
@@ -94,6 +98,7 @@ namespace CapaDatos
         }
         public List<Cliente> ListarComercial()
         {
+            string mensaje = string.Empty;
             string CadenaComercial = @"Data Source=192.168.1.85\COMPAC;Initial Catalog=adEdgar;Persist Security Info=True;User ID=sa; password=contpaqi;";
             List<Cliente> ls = new List<Cliente>();
             using (SqlConnection oConexion = new SqlConnection(CadenaComercial))
@@ -101,8 +106,13 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("SELECT CCODIGOCLIENTE, CRAZONSOCIAL ");
-                    query.AppendLine("FROM admClientes WHERE CTIPOCLIENTE <> 3 order by CCODIGOCLIENTE");
+                    query.AppendLine("SELECT C.CCODIGOCLIENTE, C.CRAZONSOCIAL, ");
+                    query.AppendLine("(SELECT CTELEFONO1 FROM admDomicilios WHERE CTIPOCATALOGO = 1 AND CIDCATALOGO = C.CIDCLIENTEPROVEEDOR) CTELEFONO1, ");
+                    query.AppendLine("(SELECT CEMAIL FROM admDomicilios WHERE CTIPOCATALOGO = 1 AND CIDCATALOGO = C.CIDCLIENTEPROVEEDOR) CEMAIL");
+                    query.AppendLine("FROM admClientes C ");
+                    query.AppendLine("LEFT JOIN admDomicilios D ON C.CIDCLIENTEPROVEEDOR = D.CIDCATALOGO ");
+                    query.AppendLine("WHERE C.CTIPOCLIENTE <> 3 GROUP BY C.CIDCLIENTEPROVEEDOR, C.CCODIGOCLIENTE, C.CRAZONSOCIAL ");
+                    query.AppendLine("order by C.CCODIGOCLIENTE");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();
@@ -116,6 +126,8 @@ namespace CapaDatos
                                 {
                                     Codigo = reader["CCODIGOCLIENTE"].ToString(),
                                     RazonSocial = reader["CRAZONSOCIAL"].ToString(),
+                                    Correo = reader["CEMAIL"].ToString(),
+                                    Telefono = reader["CTELEFONO1"].ToString(),
                                 });
                             }
                         }
@@ -125,6 +137,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Cliente>();
                 }
             }
@@ -132,6 +145,7 @@ namespace CapaDatos
         }
         public int CountClientesComercial()
         {
+            string mensaje = string.Empty;
             string CadenaComercial = @"Data Source=192.168.1.85\COMPAC;Initial Catalog=adEdgar;Persist Security Info=True;User ID=sa; password=contpaqi;";
             int result = 0;
             using (SqlConnection oConexion = new SqlConnection(CadenaComercial))
@@ -140,7 +154,7 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("SELECT count(*) results ");
-                    query.AppendLine("FROM admClientes ");
+                    query.AppendLine("FROM admClientes WHERE CTIPOCLIENTE <> 3 ");
                     SqlCommand cmd = new SqlCommand(query.ToString(), oConexion);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();
@@ -159,6 +173,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     result = 0;
                 }
             }
@@ -215,7 +230,7 @@ namespace CapaDatos
             {
                 using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
                 {
-                    SqlCommand cmd = new SqlCommand("delete from cliente where IdCliente = @Id");
+                    SqlCommand cmd = new SqlCommand("delete from cliente where IdCliente = @Id", oConexion);
                     cmd.Parameters.AddWithValue("@Id", oCliente.IdCliente);
                     cmd.CommandType = CommandType.Text;
                     oConexion.Open();

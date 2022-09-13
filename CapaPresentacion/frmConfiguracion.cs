@@ -43,6 +43,7 @@ namespace AsignacionServicios
             list.Add(menuUsuario.Checked);
             list.Add(menuServicio.Checked);
             list.Add(menuClientes.Checked);
+            list.Add(menuReportes.Checked);
             list.Add(menuConfiguracion.Checked);
             list.Add(menuAcercade.Checked);
             return list;
@@ -51,8 +52,9 @@ namespace AsignacionServicios
         {
             List<Permiso> list = new List<Permiso>();
             list.Add(new Permiso() { NombreMenu = "menuUsuario" });
-            list.Add(new Permiso() { NombreMenu = "menuServicio" });;
+            list.Add(new Permiso() { NombreMenu = "menuServicio" });
             list.Add(new Permiso() { NombreMenu = "menuClientes" });
+            list.Add(new Permiso() { NombreMenu = "menuReportes" });
             list.Add(new Permiso() { NombreMenu = "menuConfiguracion" });
             list.Add(new Permiso() { NombreMenu = "menuAcercade" });
             return list;
@@ -65,8 +67,9 @@ namespace AsignacionServicios
             menuUsuario.Checked = oPermiso[0].Estado;
             menuServicio.Checked = oPermiso[1].Estado;
             menuClientes.Checked = oPermiso[2].Estado;
-            menuConfiguracion.Checked = oPermiso[3].Estado;
-            menuAcercade.Checked = oPermiso[4].Estado;
+            menuReportes.Checked = oPermiso[3].Estado;
+            menuConfiguracion.Checked = oPermiso[4].Estado;
+            menuAcercade.Checked = oPermiso[5].Estado;
             txtIdRol.Text = IdRol.ToString();
         }
 
@@ -184,5 +187,6 @@ namespace AsignacionServicios
                 setChecks();
             }
         }
+
     }
 }

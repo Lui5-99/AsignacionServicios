@@ -55,5 +55,9 @@ namespace CapaNegocio
             else
                 return oCD_Cliente.Eliminar(oCliente, out Mensaje);
         }
+        public int CountClientesComercial()
+        {
+           return oCD_Cliente.CountClientesComercial();
+        }
     }
 }

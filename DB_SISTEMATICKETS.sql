@@ -1,6 +1,6 @@
-/*CREATE DATABASE DB_SISTEMATICKETS
+CREATE DATABASE DB_SISTEMATICKETS
 
-GO*/
+GO
 
 USE DB_SISTEMATICKETS
 
@@ -375,35 +375,41 @@ insert into Permiso(IdRol, NombreMenu, Estado)
 values (1,	'menuUsuario', 1),
 	   (1,	'menuServicio', 1),
        (1,	'menuClientes', 1),
+	   (1,	'menuReportes', 1),
        (1,	'menuConfiguracion', 1),
 	   (1,	'menuAcercade', 1),
 	   /*  SUPERVISOR  */
        (2,	'menuUsuario', 0),
        (2,	'menuServicio', 0),
        (2,	'menuClientes', 1),
+	   (2,	'menuReportes', 1),
        (2,	'menuConfiguracion', 1),
        (2, 	'menuAcercade', 1),
 	   	/*  VENTAS/COMPRAS  */
        (3,	'menuUsuario', 0),
        (3,	'menuServicio', 1),
        (3,	'menuClientes', 1),
+	   (3,	'menuReportes', 1),
        (3,	'menuConfiguracion', 0),
        (3, 	'menuAcercade', 1),
 	    /*  SOPORTE  */
        (4,	'menuUsuario', 0),
        (4,	'menuServicio', 1),
        (4,	'menuClientes', 0),
+	   (4,	'menuReportes', 1),
        (4,	'menuConfiguracion', 0),
        (4, 	'menuAcercade', 1),
 	    /*  DESARROLLO  */
        (5,	'menuUsuario', 0),
        (5,	'menuServicio', 0),
        (5,	'menuClientes', 0),
+	   (5,	'menuReportes', 0),
        (5,	'menuConfiguracion', 0),
        (5, 	'menuAcercade', 1),
 	    /*  COBRANZA  */
        (6,	'menuUsuario', 0),
        (6,	'menuServicio', 0),
        (6,	'menuClientes', 0),
+	   (6,	'menuReportes', 0),
        (6,	'menuConfiguracion', 0),
        (6, 	'menuAcercade', 1)

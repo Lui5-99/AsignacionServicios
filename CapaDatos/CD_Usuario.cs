@@ -13,6 +13,7 @@ namespace CapaDatos
     {
         public List<Usuario> Listar(int tipo)
         {
+            string mensaje = string.Empty;
             List<Usuario> ls = new List<Usuario>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -52,6 +53,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Usuario>();
                 }
             }

@@ -61,7 +61,6 @@ namespace AsignacionServicios
                     subMenuAgregar.Visible = false;
                     break;
             }
-            menuReportes.Visible = true;
         }
         private void AbrirFormulario(IconMenuItem menu, Form frm)
         {

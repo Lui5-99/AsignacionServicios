@@ -33,6 +33,7 @@
             this.cbUusario = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.menuReportes = new System.Windows.Forms.CheckBox();
             this.menuAcercade = new System.Windows.Forms.CheckBox();
             this.menuConfiguracion = new System.Windows.Forms.CheckBox();
             this.menuClientes = new System.Windows.Forms.CheckBox();
@@ -94,6 +95,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
+            this.groupBox1.Controls.Add(this.menuReportes);
             this.groupBox1.Controls.Add(this.menuAcercade);
             this.groupBox1.Controls.Add(this.menuConfiguracion);
             this.groupBox1.Controls.Add(this.menuClientes);
@@ -101,15 +103,25 @@
             this.groupBox1.Controls.Add(this.menuUsuario);
             this.groupBox1.Location = new System.Drawing.Point(28, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(222, 142);
+            this.groupBox1.Size = new System.Drawing.Size(222, 171);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Permisos usuarios";
             // 
+            // menuReportes
+            // 
+            this.menuReportes.AutoSize = true;
+            this.menuReportes.Location = new System.Drawing.Point(7, 90);
+            this.menuReportes.Name = "menuReportes";
+            this.menuReportes.Size = new System.Drawing.Size(69, 17);
+            this.menuReportes.TabIndex = 9;
+            this.menuReportes.Text = "Reportes";
+            this.menuReportes.UseVisualStyleBackColor = true;
+            // 
             // menuAcercade
             // 
             this.menuAcercade.AutoSize = true;
-            this.menuAcercade.Location = new System.Drawing.Point(6, 113);
+            this.menuAcercade.Location = new System.Drawing.Point(7, 136);
             this.menuAcercade.Name = "menuAcercade";
             this.menuAcercade.Size = new System.Drawing.Size(75, 17);
             this.menuAcercade.TabIndex = 8;
@@ -119,7 +131,7 @@
             // menuConfiguracion
             // 
             this.menuConfiguracion.AutoSize = true;
-            this.menuConfiguracion.Location = new System.Drawing.Point(7, 90);
+            this.menuConfiguracion.Location = new System.Drawing.Point(7, 113);
             this.menuConfiguracion.Name = "menuConfiguracion";
             this.menuConfiguracion.Size = new System.Drawing.Size(91, 17);
             this.menuConfiguracion.TabIndex = 7;
@@ -166,7 +178,7 @@
             this.btGuardarPermiso.IconColor = System.Drawing.Color.White;
             this.btGuardarPermiso.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btGuardarPermiso.IconSize = 20;
-            this.btGuardarPermiso.Location = new System.Drawing.Point(29, 262);
+            this.btGuardarPermiso.Location = new System.Drawing.Point(29, 294);
             this.btGuardarPermiso.Margin = new System.Windows.Forms.Padding(2);
             this.btGuardarPermiso.Name = "btGuardarPermiso";
             this.btGuardarPermiso.Size = new System.Drawing.Size(221, 29);
@@ -293,5 +305,6 @@
         private System.Windows.Forms.TextBox txtRol;
         private FontAwesome.Sharp.IconButton btGuardarRol;
         private System.Windows.Forms.TextBox txtIdRol;
+        private System.Windows.Forms.CheckBox menuReportes;
     }
 }

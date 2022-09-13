@@ -14,6 +14,7 @@ namespace CapaDatos
     {
         public List<Permiso> Listar(int IdUsuario)
         {
+            string mensaje = string.Empty;
             List<Permiso> ls = new List<Permiso>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -48,13 +49,15 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-
+                    mensaje = ex.Message;
+                    ls = new List<Permiso>();
                 }
             }
             return ls;
         }
         public List<Permiso> ListarPermisos(int IdRol)
         {
+            string mensaje = string.Empty;
             List<Permiso> ls = new List<Permiso>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -88,7 +91,8 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-
+                    mensaje = ex.Message;
+                    ls = new List<Permiso>();
                 }
             }
             return ls;
@@ -152,6 +156,7 @@ namespace CapaDatos
         }
         public List<Permiso> ListarMenus()
         {
+            string mensaje = string.Empty;
             List<Permiso> ls = new List<Permiso>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -177,6 +182,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Permiso>();
                 }
             }

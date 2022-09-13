@@ -13,6 +13,7 @@ namespace CapaDatos
     {
         public List<Rol> Listar()
         {
+            string mensaje = string.Empty;
             List<Rol> ls = new List<Rol>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -39,7 +40,8 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-
+                    mensaje = ex.Message;
+                    ls = new List<Rol>();
                 }
             }
             return ls;
@@ -73,6 +75,7 @@ namespace CapaDatos
         }
         public int IdRol()
         {
+            string mensaje = string.Empty;
             int IdRol = 0;
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -95,6 +98,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     IdRol = 0;
                 }
             }

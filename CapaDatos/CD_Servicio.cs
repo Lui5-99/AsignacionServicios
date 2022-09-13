@@ -13,6 +13,7 @@ namespace CapaDatos
     {
         public int obtenerCorrelativo()
         {
+            string mensaje = string.Empty;
             int idCorrelativo = 0;
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -30,6 +31,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     idCorrelativo = 0;
                 }
             }
@@ -87,6 +89,7 @@ namespace CapaDatos
         }
         public List<Servicio> Listar(string fecha)
         {
+            string mensaje = string.Empty;
             string _fecha = fecha + " 00:00:00";
             string _fecha2 = fecha + " 23:59:59";
             List<Servicio> ls = new List<Servicio>();
@@ -150,6 +153,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Servicio>();
                 }
             }
@@ -158,6 +162,7 @@ namespace CapaDatos
 
         public List<Servicio> ListarBitacora(string fecha, int tipo, Servicio oServ)
         {
+            string mensaje = string.Empty;
             string _fecha = fecha + " 00:00:00";
             string _fecha2 = fecha + " 23:59:59";
             List<Servicio> ls = new List<Servicio>();
@@ -234,6 +239,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Servicio>();
                 }
             }
@@ -283,6 +289,7 @@ namespace CapaDatos
         }
         public Servicio obtenerServicio(string numero)
         {
+            string mensaje = string.Empty;
             Servicio oServicio = new Servicio();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -333,6 +340,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     oServicio = new Servicio();
                 }
             }
@@ -340,6 +348,7 @@ namespace CapaDatos
         }
         public List<Movimiento> obtenerDetalle(int id)
         {
+            string mensaje = string.Empty;
             List<Movimiento> ls = new List<Movimiento>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.cadena))
             {
@@ -383,6 +392,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
+                    mensaje = ex.Message;
                     ls = new List<Movimiento>();
                 }
             }
