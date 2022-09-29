@@ -96,10 +96,10 @@ namespace CapaDatos
             }
             return idClientegenerado;
         }
-        public List<Cliente> ListarComercial()
+        public List<Cliente> ListarComercial(string path)
         {
             string mensaje = string.Empty;
-            string CadenaComercial = @"Data Source=192.168.1.85\COMPAC;Initial Catalog=adEdgar;Persist Security Info=True;User ID=sa; password=contpaqi;";
+            string CadenaComercial = path;
             List<Cliente> ls = new List<Cliente>();
             using (SqlConnection oConexion = new SqlConnection(CadenaComercial))
             {

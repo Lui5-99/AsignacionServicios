@@ -15,9 +15,9 @@ namespace CapaNegocio
         {
             return oCD_Cliente.Listar();
         }
-        public List<Cliente> ListarComercial()
+        public List<Cliente> ListarComercial(string path)
         {
-            return oCD_Cliente.ListarComercial();
+            return oCD_Cliente.ListarComercial(path);
         }
         public int Registrar(Cliente oCliente, out string Mensaje)
         {

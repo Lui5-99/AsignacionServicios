@@ -35,9 +35,14 @@ namespace CapaPresentacion
             if(oUsuario != null)
             {
                 if (ckbRecordar.Checked)
-                    GuardarTxt(txtUser.Text.Trim(), txtPwd.Text.Trim());
+                {
+                    List<string> datos = new List<string>();
+                    datos.Add(txtUser.Text.Trim());
+                    datos.Add(txtPwd.Text.Trim());
+                    cSeguridad.GuardarTxt(datos, @"Creedenciales.txt");
+                }
                 else
-                    GuardarTxtVacio();
+                    cSeguridad.GuardarTxtVacio(@"Creedenciales.txt");
                 Inicio oInicio = new Inicio(oUsuario);
                 oInicio.Show();
                 this.Hide();
@@ -54,7 +59,7 @@ namespace CapaPresentacion
         {
             if (File.Exists(@"creedenciales.txt"))
             {
-                string[] lineas = cSeguridad.read();
+                string[] lineas = cSeguridad.read(@"creedenciales.txt");
                 ckbRecordar.Checked = lineas[0] == string.Empty ? false : true;
                 txtPwd.Text = lineas[1] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[1]);
                 txtUser.Text = lineas[0] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[0]);
@@ -71,7 +76,7 @@ namespace CapaPresentacion
         {
             if (File.Exists(@"creedenciales.txt"))
             {
-                string[] lineas = cSeguridad.read();
+                string[] lineas = cSeguridad.read(@"creedenciales.txt");
                 ckbRecordar.Checked = lineas[0] == string.Empty ? false : true;
                 txtPwd.Text = lineas[1] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[1]);
                 txtUser.Text = lineas[0] == string.Empty ? string.Empty : cSeguridad.Decrypt(lineas[0]);
@@ -96,25 +101,6 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 btIngresar_Click(sender, e);
-            }
-        }
-
-        private void GuardarTxt(string usuario, string pass)
-        {
-            usuario = cSeguridad.Encrypt(usuario.Trim());
-            pass = cSeguridad.Encrypt(pass.Trim());
-            using (StreamWriter sw = File.CreateText(@"creedenciales.txt"))
-            {
-                sw.Write(usuario + ";");
-                sw.Write(pass + ";");
-            }
-        }
-        private void GuardarTxtVacio()
-        {
-            using (StreamWriter sw = File.CreateText(@"creedenciales.txt"))
-            {
-                sw.Write(";");
-                sw.Write(";");
             }
         }
     }

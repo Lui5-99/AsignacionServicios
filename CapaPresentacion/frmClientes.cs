@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using CapaNegocio;
 using CapaPresentacion.Utilidades;
 using CapaEntidad;
+using AsignacionServicios.Modales;
+using System.IO;
+using AsignacionServicios.Utilidades;
 
 namespace AsignacionServicios
 {
@@ -260,50 +263,115 @@ namespace AsignacionServicios
 
         private void btSinc_Click(object sender, EventArgs e)
         {
-            int errores = 0;
-            string mensaje = string.Empty;
-            string error = string.Empty;
-            int result = 0;
-            int countClientes = new CN_Cliente().CountClientesComercial();
-            List<Cliente> ls = new CN_Cliente().ListarComercial();
-            foreach(Cliente item in ls)
+            int conexion = 0;
+            string path = string.Empty;
+            string server = string.Empty;
+            string instance = string.Empty;
+            string bd = string.Empty;
+            string user = string.Empty;
+            string pass = string.Empty;
+            if (File.Exists(@"Parametros.txt"))
             {
-                Cliente _auxCliente = new Cliente()
+                string[] param = cSeguridad.read(@"Parametros.txt");
+                server = cSeguridad.Decrypt(param[0]);
+                instance = cSeguridad.Decrypt(param[1]);
+                bd = cSeguridad.Decrypt(param[2]);
+                user = cSeguridad.Decrypt(param[3]);
+                pass = cSeguridad.Decrypt(param[4]);
+                path = @"Data Source=" + server + @"\" + instance + ";Initial Catalog=" + bd + ";" +
+                        "Persist Security Info=True;User ID=" + user + "; password=" + pass + ";";
+                List<Cliente> cliente = new CN_Cliente().ListarComercial(path);
+                if(!(cliente.Count >= 0 || cliente == null))
                 {
-                    Codigo = item.Codigo,
-                    RazonSocial = item.RazonSocial,
-                    Correo = item.Correo,
-                    Telefono = item.Telefono,
-                    Estado = true,
-                };
-                result = new CN_Cliente().Registrar(_auxCliente, out mensaje);
-                if(result == 0)
-                {
-                    errores++;
-                    error += mensaje;
-                }
-            }
-            if(errores == 0)
-            {
-                MessageBox.Show("Todos los clientes sincronizados con exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                if(errores == countClientes)
-                {
-                    var dialog = MessageBox.Show("¿Copiar la advertencia?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                    if (dialog == DialogResult.Yes)
-                        Clipboard.SetText(error);
+                    conexion = 1;
                 }
                 else
                 {
-                    var dialog = MessageBox.Show("Algunos clientes fueron sincronizados con exito\n " +
-                        "¿Copiar al portapapeles los que no se sincronizaron?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (dialog == DialogResult.Yes)
-                        Clipboard.SetText(error);
+                    using (var modal = new mdConexion())
+                    {
+                        var show = modal.ShowDialog();
+
+                        if (show == DialogResult.OK)
+                        {
+                            server = modal._param.Servidor;
+                            instance = modal._param.Instancia;
+                            bd = modal._param.BaseDatos;
+                            user = modal._param.Usuario;
+                            pass = modal._param.Clave;
+                            path = @"Data Source=" + modal._param.Servidor + @"\" + modal._param.Instancia + ";Initial Catalog=" + modal._param.BaseDatos + ";" +
+                            "Persist Security Info=True;User ID=" + modal._param.Usuario + "; password=" + modal._param.Clave + ";";
+                            conexion = 1;
+                        }
+                    }
                 }
             }
-            load();
+            else
+            {
+                using (var modal = new mdConexion())
+                {
+                    var show = modal.ShowDialog();
+
+                    if (show == DialogResult.OK)
+                    {
+                        server = modal._param.Servidor;
+                        instance = modal._param.Instancia;
+                        bd = modal._param.BaseDatos;
+                        user = modal._param.Usuario;
+                        pass = modal._param.Clave;
+                        path = @"Data Source=" + modal._param.Servidor + @"\" + modal._param.Instancia + ";Initial Catalog=" + modal._param.BaseDatos + ";" +
+                        "Persist Security Info=True;User ID=" + modal._param.Usuario + "; password=" + modal._param.Clave + ";";
+                        conexion = 1;
+                    }
+                }
+            }
+            //////
+            if(conexion == 1)
+            {
+                int errores = 0;
+                string mensaje = string.Empty;
+                string error = string.Empty;
+                int result = 0;
+                int countClientes = new CN_Cliente().CountClientesComercial();
+                List<Cliente> ls = new CN_Cliente().ListarComercial(path);
+                foreach (Cliente item in ls)
+                {
+                    Cliente _auxCliente = new Cliente()
+                    {
+                        Codigo = item.Codigo,
+                        RazonSocial = item.RazonSocial,
+                        Correo = item.Correo,
+                        Telefono = item.Telefono,
+                        Estado = true,
+                    };
+                    result = new CN_Cliente().Registrar(_auxCliente, out mensaje);
+                    if (result == 0)
+                    {
+                        errores++;
+                        error += mensaje;
+                    }
+                }
+                if (errores == 0)
+                {
+                    MessageBox.Show("Todos los clientes sincronizados con exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    if (errores == countClientes)
+                    {
+                        var dialog = MessageBox.Show("¿Copiar la advertencia?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                        if (dialog == DialogResult.Yes)
+                            Clipboard.SetText(error);
+                    }
+                    else
+                    {
+                        var dialog = MessageBox.Show("Algunos clientes fueron sincronizados con exito\n " +
+                            "¿Copiar al portapapeles los que no se sincronizaron?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (dialog == DialogResult.Yes)
+                            Clipboard.SetText(error);
+                    }
+                }
+                load();
+            }
         }
     }
 }

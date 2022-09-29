@@ -85,12 +85,38 @@ namespace AsignacionServicios.Utilidades
             //se regresa en forma de cadena
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
-        public static string[] read()
+        public static string[] read(string nombreArchivo)
         {
-            string linea = File.ReadAllText(@"creedenciales.txt");
+            string linea = File.ReadAllText(nombreArchivo);
             linea = linea.Remove(linea.Length - 1);
             string[] lineas = linea.Split(';');
             return lineas;
+        }
+        public static void GuardarTxt(List<string> datos, string nombreArchivo)
+        {
+            /*datos[0] = cSeguridad.Encrypt(datos[0].Trim());
+            datos[1] = cSeguridad.Encrypt(datos[1].Trim());
+            using (StreamWriter sw = File.CreateText(nombreArchivo))
+            {
+                sw.Write(datos[0] + ";");
+                sw.Write(datos[1] + ";");
+            }*/
+            using (StreamWriter sw = File.CreateText(nombreArchivo))
+            {
+                for (int i = 0; i < datos.Count; i++)
+                {
+                    string dato = cSeguridad.Encrypt(datos[i].Trim());
+                    sw.Write(dato + ";");
+                }
+            }
+        }
+        public static void GuardarTxtVacio(string nombreArchivo)
+        {
+            using (StreamWriter sw = File.CreateText(nombreArchivo))
+            {
+                sw.Write(";");
+                sw.Write(";");
+            }
         }
     }
 }
